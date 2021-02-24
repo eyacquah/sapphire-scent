@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>Dashboard</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/dashboard/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Sapphire Scent Ghana</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Sign out</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <span data-feather="home"></span>
+              Add product <span class="sr-only"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="order.html">
+              <span data-feather="file"></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="product.html">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customerlist.html">
+              <span data-feather="users"></span>
+              Customers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="category.html">
+              <span data-feather="bar-chart-2"></span>
+              Category
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          <section role="main" class="content-body content-body-modern mt-0">
+
+          <!-- start: page -->
+          <div class="ecommerce-form-sidebar-overlay-wrapper">
+            <div class="ecommerce-form-sidebar-overlay-body">
+              <a href="#" class="ecommerce-form-sidebar-overlay-close"><i class="bx bx-x"></i></a>
+              <div class="scrollable h-100 loading-overlay-showing" data-plugin-scrollable>
+                <div class="loading-overlay">
+                  <div class="bounce-loader">
+                    <div class="bounce1"></div>
+                    <div class="bounce2"></div>
+                    <div class="bounce3"></div>
+                  </div>
+                </div>
+                <div class="ecommerce-form-sidebar-overlay-content scrollable-content px-3 pb-3 pt-1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center justify-content-sm-between" style="margin-bottom: 30px;">
+            <div class="col-sm-auto text-center mb-4 mb-sm-0 mt-2 mt-sm-0">
+              <a href="index.html" class="btn btn-primary btn-md font-weight-semibold">+ Add Product</a>
+            </div>
+          </div>
+          <div class="row row-gutter-sm mb-5">
+            <div class="col-lg-3-5 col-xl-4-5">
+              <div class="row row-gutter-sm">
+                
+                <div class="col-sm-6 col-xl-3 mb-4">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <div class="image-frame-badges-wrapper">
+                            <span class="badge badge-ecommerce badge-danger">27% OFF</span>
+                          </div>
+                          <a href="index.html"><img src="img/products/product-1.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <div class="image-frame-badges-wrapper">
+                            <span class="badge badge-ecommerce badge-success">NEW</span>
+                            <span class="badge badge-ecommerce badge-danger">27% OFF</span>
+                          </div>
+                          <a href="index.html"><img src="img/products/product-2.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <a href="index.html"><img src="img/products/product-3.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <a href="index.html"><img src="img/products/product-4.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4 mb-lg-0">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <a href="index.html"><img src="img/products/product-5.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4 mb-lg-0">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <a href="index.html"><img src="img/products/product-6.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3 mb-4 mb-sm-0">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <a href="index.html"><img src="img/products/product-7.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                  <div class="card card-modern card-modern-alt-padding">
+                    <div class="card-body bg-light">
+                      <div class="image-frame mb-2">
+                        <div class="image-frame-wrapper">
+                          <a href="index.html"><img src="img/products/product-8.jpg" class="img-fluid" alt="Product Short Name" /></a>
+                        </div>
+                      </div>
+                      <small><a href="index.html" class="ecommerce-sidebar-link text-color-grey text-color-hover-primary text-decoration-none">CATEGORY</a></small>
+                      <h4 class="text-4 line-height-2 mt-0 mb-2"><a href="index.html" class="ecommerce-sidebar-link text-color-dark text-color-hover-primary text-decoration-none">Product Short Name</a></h4>
+                      <div class="stars-wrapper">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                      </div>
+                      <div class="product-price">
+                        <div class="regular-price on-sale">Regular: $59.00</div>
+                        <div class="sale-price">Sales: $49.00</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row row-gutter-sm justify-content-between" style="margin-top: 30px;">
+                <div class="col-lg-auto order-2 order-lg-1">
+                  <p class="text-center text-lg-left mb-0">Showing 1-8 of 60 results</p>
+                </div>
+                <div class="col-lg-auto order-1 order-lg-2 mb-3 mb-lg-0">
+                  <nav aria-label="Page navigation example">
+                      <ul class="pagination pagination-modern pagination-modern-spacing justify-content-center justify-content-lg-start mb-0">
+                        <li class="page-item">
+                            <a class="page-link prev" href="#" aria-label="Previous">
+                              <span><i class="fas fa-chevron-left" aria-label="Previous"></i></span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#" disabled="true">...</a></li>
+                        <li class="page-item"><a class="page-link" href="#">15</a></li>
+                        <li class="page-item">
+                            <a class="page-link next" href="#" aria-label="Next">
+                              <span><i class="fas fa-chevron-right" aria-label="Next"></i></span>
+                            </a>
+                        </li>
+                      </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end: page -->
+        </section>
+    </main>
+  </div>
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script src="dashboard.js"></script>
+  </body>
+</html>

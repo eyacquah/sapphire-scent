@@ -1,0 +1,151 @@
+extends base
+
+block content
+
+    main.col-md-9.ml-sm-auto.col-lg-10.px-md-4(role='main')
+        section(style='margin-top: 30px;')
+            header.page-header.page-header-left-inline-breadcrumb
+                h2.font-weight-bold.text-6= `Order ${order.id}`
+                h5= `Created At: ${order.date}`
+            // start: page
+            form.orderForm.order-details.action-buttons-fixed(data-id=order.id)
+                .row
+                    .col-xl-4.mb-4.mb-xl-0
+                        .card.card-modern
+                            .card-header
+                                h2.card-title General
+                            .card-body
+                                .form-row
+                                    
+                                    .form-group.col.mb-3
+                                        label Delivery Status
+                                        select#delStatus.form-control.form-control-modern(name='delStatus' required='')
+                                            - if(order.delStatus === 'Pending')
+                                                option(value='delivered') Delivered
+                                                option(value='pending' selected='') Pending Delivery
+                                            - if(order.delStatus === 'Delivered')
+                                                option(value='delivered' selected='') Delivered
+                                                option(value='pending') Pending Delivery
+
+                                    .form-group.col.mb-3
+                                        label Payment Status
+                                        select#payStatus.form-control.form-control-modern(name='payStatus' required='')
+                                            - if(order.paid)
+                                                option(value='pending') Pending
+                                                option(value='paid' selected) Paid
+                                            - if(!order.paid)
+                                                option(value='pending' selected) Pending
+                                                option(value='paid') Paid
+                                            
+                                //- .form-row
+                                //-     .form-group.col.mb-3
+                                //-         label Date Created
+                                //-         .date-time-field
+                                //-             .date
+                                //-                 input.form-control.form-control-modern(type='text' name='orderDate' value='2019-11-21' required='' data-plugin-datepicker='' data-plugin-options='{"orientation": "bottom", "format": "yyyy-mm-dd"}')
+                                .form-row
+                                    .form-group.col.mb-3
+                                        label Customer
+                                        select.form-control.form-control-modern(name='orderCustomer' required='' data-plugin-selecttwo='')
+                                            option(value='21' selected='')= order.customer.name
+                    .col-xl-8
+                        .card.card-modern
+                            .card-header
+                                h2.card-title Addresses
+                            .card-body
+                                .row
+                                    .col-xl-auto.mr-xl-5.pr-xl-5.mb-4.mb-xl-0
+                                        h3.text-color-dark.font-weight-bold.text-4.line-height-1.mt-0.mb-3 BILLING
+                                        ul.list.list-unstyled.list-item-bottom-space-0
+                                            li.mb-0= order.customer.name
+                                            li.mb-0= `${order.customer.address.streetAddress}, ${order.customer.address.city}`
+                                            li.mb-0= order.customer.address.region
+                                            
+                                        strong.d-block.text-color-dark Email address:
+                                        a(href='mailto:johndoe@domain.com')= order.customer.email
+                                        strong.d-block.text-color-dark.mt-3 Phone:
+                                        a.text-color-dark(href='tel:+5551234')= order.customer.phoneNumber
+                                    .col-xl-auto.pl-xl-5
+                                        h3.font-weight-bold.text-color-dark.text-4.line-height-1.mt-0.mb-3 SHIPPING
+                                        ul.list.list-unstyled.list-item-bottom-space-0
+                                            li.mb-0= order.orderReciepient.name
+                                            li.mb-0= `${order.shippingAddress.streetAddress}, ${order.shippingAddress.city}`
+                                            li.mb-0= order.shippingAddress.region
+                                        strong.d-block.text-color-dark Email address:
+                                        a(href='mailto:johndoe@domain.com')= order.customer.email
+                                        strong.d-block.text-color-dark.mt-3 Phone:
+                                        a.text-color-dark(href='tel:+5551234')= order.orderReciepient.phoneNumber
+                .row
+                    .col
+                        .card.card-modern
+                            .card-header
+                                h2.card-title Products
+                            .card-body
+                                .table-responsive
+                                    table.table.table-ecommerce-simple.table-ecommerce-simple-border-bottom.table-striped.mb-0(style='min-width: 380px;')
+                                        thead
+                                            tr
+                                                //- th.pl-4(width='8%') ID
+                                                th(width='65%') Name
+                                                th.text-right(width='7%') Qty
+                                                th.text-right(width='5%') Cost
+                                                
+                                        tbody
+                                            // PRODUCTS
+                                            each product in order.products
+                                                tr
+                                                    //- td.pl-4
+                                                    //-     a(href='ecommerce-products-form.html')
+                                                    //-         strong 191
+                                                    td
+                                                        a(href='ecommerce-products-form.html')
+                                                            strong= product.type.title
+                                                    td.text-right= `x ${product.orderQuantity}` 
+                                                    td.text-right= `GHS ${product.price}`
+                                                    
+                                            
+                                            
+                                .row.justify-content-end.flex-column.flex-lg-row.my-3
+                                    .col-auto.mr-5
+                                        h3.font-weight-bold.text-color-dark.text-4.mb-3 Items Subtotal
+                                        span.d-flex.align-items-center
+                                            | #{order.products.length} Items
+                                            i.fas.fa-chevron-right.text-color-primary.px-3
+                                            b.text-color-dark.text-xxs= `GHS ${order.subtotal}`
+                                    .col-auto.mr-5
+                                        h3.font-weight-bold.text-color-dark.text-4.mb-3 Shipping
+                                        span.d-flex.align-items-center
+                                            | Rate:
+                                            i.fas.fa-chevron-right.text-color-primary.px-3
+                                            b.text-color-dark.text-xxs= `GHS ${order.shippingFee}`
+                                    .col-auto
+                                        h3.font-weight-bold.text-color-dark.text-4.mb-3 Order Total
+                                        span.d-flex.align-items-center.justify-content-lg-end
+                                            strong.text-color-dark.text-5= `GHS ${order.totalAmount}`
+                .row
+                    .col
+                        .card.card-modern
+                            .card-header
+                                h2.card-title Order Notes
+                            .card-body
+                                .ecommerce-timeline.mb-3
+                                    .ecommerce-timeline-items-wrapper
+                                        each note in order.notes
+                                            .ecommerce-timeline-item
+                                                small
+                                                    | added on #{order.date} at #{note.date} by #{note.by} - 
+                                                    //- a.text-color-danger(href='#') Delete note
+                                                p
+                                                    | #{note.text}
+                                        
+                .row.action-buttons(style='margin-top: 30px; margin-bottom: 30px;')
+                    .col-12.col-md-auto
+                        button.submit-button.btn.btn-primary.btn-px-4.py-3.d-flex.align-items-center.font-weight-semibold.line-height-1(type='submit' data-loading-text='Loading...')
+                            i.bx.bx-save.text-4.mr-2
+                            |  Save Order
+                    .col-12.col-md-auto.px-md-0.mt-3.mt-md-0
+                        a.cancel-button.btn.btn-light.btn-px-4.py-3.border.font-weight-semibold.text-color-dark.text-3(href='/dashboard/orders/all') Cancel
+                    .col-12.col-md-auto.ml-md-auto.mt-3.mt-md-0
+                        a.delete-button.btn.btn-danger.btn-px-4.py-3.d-flex.align-items-center.font-weight-semibold.line-height-1(href=`${order.id}/delete`)
+                            i.bx.bx-trash.text-4.mr-2
+                            |  Delete Order

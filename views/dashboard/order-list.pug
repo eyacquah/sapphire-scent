@@ -1,0 +1,39 @@
+extends base
+
+block content
+
+    main.col-md-9.ml-sm-auto.col-lg-10.px-md-4(role='main')
+        .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+            h1.h2 Orders
+            .btn-toolbar.mb-2.mb-md-0
+                .btn-group.mr-2
+                    button.btn.btn-sm.btn-outline-secondary(type='button') Share
+                    button.btn.btn-sm.btn-outline-secondary(type='button') Export
+                button.btn.btn-sm.btn-outline-secondary.dropdown-toggle(type='button')
+                    span(data-feather='calendar')
+                    |             This week
+        .table-responsive
+            table.table.table-striped.table-sm
+                thead
+                    tr
+                        th Date
+                        th Order ID
+                        th Customer
+                        th Total Amount
+                        th Payment Status
+                        th Payment Method
+                        th Delivery Status
+                tbody
+                    each order in orders
+                        tr
+                            td= order.date
+                            td
+                                a(href=`/dashboard/orders/${order._id}`)= order._id
+                            td= order.customer.name
+                            td= `GHS ${order.totalAmount}`
+                            td= order.payStatus   
+                            td= order.paymentMethod       
+                            td= order.delStatus
+                                
+                            
+

@@ -1,0 +1,343 @@
+extends base
+
+block content
+
+  .main.shop.pt-4(role='main')
+    .container
+      .row
+        .col-md-5.mb-5.mb-md-0
+          .thumb-gallery-wrapper
+            .thumb-gallery-detail.owl-carousel.owl-theme.manual.nav-inside.nav-style-1.nav-dark.mb-3
+              div
+                img.img-fluid(alt='' src='img/products/product-grey-7.jpg' data-zoom-image='img/products/product-grey-7.jpg')
+              div
+                img.img-fluid(alt='' src='img/products/product-grey-7-2.jpg' data-zoom-image='img/products/product-grey-7-2.jpg')
+              div
+                img.img-fluid(alt='' src='img/products/product-grey-7-3.jpg' data-zoom-image='img/products/product-grey-7-3.jpg')
+              div
+                img.img-fluid(alt='' src='img/products/product-grey-8.jpg' data-zoom-image='img/products/product-grey-8.jpg')
+              div
+                img.img-fluid(alt='' src='img/products/product-grey-6.jpg' data-zoom-image='img/products/product-grey-6.jpg')
+              div
+                img.img-fluid(alt='' src='img/products/product-grey-5.jpg' data-zoom-image='img/products/product-grey-5.jpg')
+            .thumb-gallery-thumbs.owl-carousel.owl-theme.manual.thumb-gallery-thumbs
+              .cur-pointer
+                img.img-fluid(alt='' src='img/products/product-grey-7.jpg')
+              .cur-pointer
+                img.img-fluid(alt='' src='img/products/product-grey-7-2.jpg')
+              .cur-pointer
+                img.img-fluid(alt='' src='img/products/product-grey-7-3.jpg')
+              .cur-pointer
+                img.img-fluid(alt='' src='img/products/product-grey-8.jpg')
+              .cur-pointer
+                img.img-fluid(alt='' src='img/products/product-grey-6.jpg')
+              .cur-pointer
+                img.img-fluid(alt='' src='img/products/product-grey-5.jpg')
+        .col-md-7
+          .summary.entry-summary.position-relative
+            h1.mb-0.font-weight-bold.text-7 Blue Ladies Handbag
+            .divider.divider-small
+              hr.bg-color-grey-scale-4
+            p.price.mb-3
+              span.sale.text-color-dark $15,00
+              span.amount $22,00
+            p.text-3-4.mb-3
+              | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit purus. Lorem ipsum dolor sit amet.
+            ul.list.list-unstyled.text-2
+              li.mb-0
+                | AVAILABILITY: 
+                strong.text-color-dark AVAILABLE
+              li.mb-0
+                | SKU: 
+                strong.text-color-dark 1234567890
+            form.cart(enctype='multipart/form-data' method='post' action='shop-cart.html')
+              hr
+              .quantity.quantity-lg
+                input.minus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='-')
+                input.input-text.qty.text(type='text' title='Qty' value='1' name='quantity' min='1' step='1')
+                input.plus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='+')
+              button.btn.btn-dark.btn-modern.text-uppercase.bg-color-hover-primary.border-color-hover-primary(type='submit') Add to cart
+              hr
+      .row.mb-4
+        .col
+          #description.tabs.tabs-simple.tabs-simple-full-width-line.tabs-product.tabs-dark.mb-2
+            ul.nav.nav-tabs.justify-content-start
+              li.nav-item.active
+                a.nav-link.active.font-weight-bold.text-3-4.text-uppercase.py-2.px-3(href='#productDescription' data-toggle='tab') Description
+              li.nav-item
+                a.nav-link.font-weight-bold.text-3-4.text-uppercase.py-2.px-3(href='#productInfo' data-toggle='tab') Additional Information
+            .tab-content.p-0
+              #productDescription.tab-pane.px-0.py-3.active
+                p
+                  | Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus.
+                p.m-0
+                  | Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sagittis, massa fringilla consequat blandit, mauris ligula porta nisi, non tristique enim sapien vel nisl. Suspendisse vestibulum lobortis dapibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              #productInfo.tab-pane.px-0.py-3
+                table.table.table-striped.m-0
+                  tbody
+                    tr
+                      th.border-top-0
+                        | Size:
+                      td.border-top-0
+                        | Unique
+                    tr
+                      th
+                        | Colors
+                      td
+                        | Red, Blue
+                    tr
+                      th
+                        | Material
+                      td
+                        | 100% Leather
+              #productReviews.tab-pane.px-0.py-3
+                ul.comments
+                  li
+                    .comment
+                      .img-thumbnail.border-0.p-0.d-none.d-md-block
+                        img.avatar.rounded-circle(alt='' src='img/avatars/avatar-2.jpg')
+                      .comment-block
+                        .comment-arrow
+                        span.comment-by
+                          strong Jack Doe
+                          span.float-right
+                            .pb-0.clearfix
+                              .float-left(title='Rated 3 out of 5')
+                                input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
+                              .review-num
+                                span.count(itemprop='ratingCount') 2
+                                |  reviews
+                        p
+                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.
+                  li
+                    .comment
+                      .img-thumbnail.border-0.p-0.d-none.d-md-block
+                        img.avatar.rounded-circle(alt='' src='img/avatars/avatar.jpg')
+                      .comment-block
+                        .comment-arrow
+                        span.comment-by
+                          strong John Doe
+                          span.float-right
+                            .pb-0.clearfix
+                              .float-left(title='Rated 3 out of 5')
+                                input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
+                              .review-num
+                                span.count(itemprop='ratingCount') 2
+                                |  reviews
+                        p
+                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra odio, gravida urna varius vitae, gravida pellentesque urna varius vitae.
+      .row
+        .col
+          h4.font-weight-semibold.text-4.mb-3 RELATED PRODUCTS
+          hr.mt-0
+          .products.row
+            .col
+              .owl-carousel.owl-theme.nav-style-1.nav-outside.nav-outside.nav-dark.mb-0(data-plugin-options="{'loop': false, 'autoplay': false, 'items': 4, 'nav': true, 'dots': false, 'margin': 20, 'autoplayHoverPause': true, 'autoHeight': true, 'stagePadding': '75', 'navVerticalOffset': '50px'}")
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .product-thumb-info-badges-wrapper
+                      span.badge.badge-ecommerce.badge-success NEW
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-1.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') electronics
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Photo Camera
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $69,00
+                    span.amount $59,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .product-thumb-info-badges-wrapper
+                      span.badge.badge-ecommerce.badge-success NEW
+                      span.badge.badge-ecommerce.badge-danger 27% OFF
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image.product-thumb-info-image-effect
+                        img.img-fluid(alt='' src='img/products/product-grey-7.jpg')
+                        img.img-fluid(alt='' src='img/products/product-grey-7-2.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') accessories
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Blue Handbag
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $199,00
+                    span.amount $99,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-2.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') sports
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Golf Bag
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $29,00
+                    span.amount $19,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .product-thumb-info-badges-wrapper
+                      span.badge.badge-ecommerce.badge-danger 27% OFF
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    .countdown-offer-wrapper
+                      .text-color-light.text-2(data-plugin-countdown='' data-plugin-options="{'date': '2022/01/01 12:00:00', 'numberClass': 'text-color-light', 'wrapperClass': 'text-color-light', 'insertHTMLbefore': '<span>OFFER ENDS IN </span>', 'textDay': 'DAYS', 'textHour': ':', 'textMin': ':', 'textSec': '', 'uppercase': true}")
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-3.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') sports
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Workout
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $40,00
+                    span.amount $30,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-4.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') accessories
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Luxury Bag
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $99,00
+                    span.amount $79,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-5.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') accessories
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Styled Bag
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $199,00
+                    span.amount $119,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-6.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') hat
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Blue Hat
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $299,00
+                    span.amount $289,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-8.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') accessories
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Adventurer Bag
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $99,00
+                    span.amount $79,00
+                .product.mb-0
+                  .product-thumb-info.border-0.mb-3
+                    .addtocart-btn-wrapper
+                      a.text-decoration-none.addtocart-btn(href='shop-cart.html' data-tooltip='' data-original-title='Add to Cart')
+                        i.icons.icon-bag
+                    a.quick-view.text-uppercase.font-weight-semibold.text-2(href='ajax/shop-product-quick-view.html')
+                      | QUICK VIEW
+                    a(href='shop-product-sidebar-left.html')
+                      .product-thumb-info-image
+                        img.img-fluid(alt='' src='img/products/product-grey-9.jpg')
+                  .d-flex.justify-content-between
+                    div
+                      a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') sports
+                      h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                        a.text-color-dark.text-color-hover-primary(href='shop-product-sidebar-right.html') Baseball Ball
+                    a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                      i.far.fa-heart
+                  div(title='Rated 5 out of 5')
+                    input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                  p.price.text-5.mb-3
+                    span.sale.text-color-dark.font-weight-medium $399,00
+                    span.amount $299,00

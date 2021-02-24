@@ -1,0 +1,48 @@
+extends base
+
+block content
+    main.col-md-9.ml-sm-auto.col-lg-10.px-md-4(role='main')
+        .container
+            br
+            br
+            a.btn.btn-danger.btn-lg(href=`/dashboard/products/${product.slug}/delete`) Delete Product
+            .py-5.text-center
+                h2 Update Product form
+            .row
+                .col-md-8.order-md-1
+                    form.productForm.needs-validation(novalidate='' data-id=product.id enctype="multipart/form-data")
+                        .mb-3
+                            label(for='title') Name of Product
+                            .input-group
+                                input#title.form-control(type='text' placeholder='Name' required='' value=`${product.title}` name='title')
+                                .invalid-feedback(style='width: 100%;')
+                                    | Your username is required.
+                        .mb-3
+                            label(for='description') Product Description
+                            .input-group
+                                textarea#description.form-control.form-control-modern(rows='6')=product.description
+                        .mb-3
+                            label(for='price') Regular Price
+                            input#price.form-control(type='text' placeholder='10' required='' value=`${product.price}`)
+                            .invalid-feedback
+                        .mb-3
+                            label(for='priceDiscount')
+                                | Sales Price 
+                                span.text-muted (Optional)
+                            input#priceDiscount.form-control(type='text' placeholder='8' value=`${product.priceDiscount}`)
+                        .form-group
+                            label(for='categories') Category
+                            select#categories.form-control
+                                each category in categories
+                                    - if(category.id === product.category.id)
+                                        option.category(data-id=category.id selected)= category.title
+                                    - if(category.id !== product.category.id)
+                                        option.category(data-id=category.id)= category.title
+                        .row
+                            .col-md-5.mb-3
+                                label(for='images') Pictures of product
+                                input#images(type='file' name='Picture of product' value=`${product.images}` multiple)
+                                .invalid-feedback
+                                    | Please select a valid price.
+                            button.btn.btn-primary.btn-lg.btn-block(type='submit') Upload
+

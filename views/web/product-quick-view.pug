@@ -1,0 +1,91 @@
+extends base
+
+block quickview
+
+
+    .shop.dialog.dialog-lg.fadeIn.animated(style='animation-duration: 300ms;')
+        .row
+            .col-lg-6
+                .thumb-gallery-wrapper
+                    .thumb-gallery-detail.owl-carousel.owl-theme.manual.nav-inside.nav-style-1.nav-dark.mb-3
+                        each image in product.images
+                            div
+                                img.img-fluid(alt='' src=`/img/products/${image}` data-zoom-image=`/img/products/${image}`)
+                    .thumb-gallery-thumbs.owl-carousel.owl-theme.manual.thumb-gallery-thumbs
+                        each image in product.images
+                            .cur-pointer
+                                img.img-fluid(alt='' src=`/img/products/${image}`)
+                        
+            .col-lg-6
+                .summary.entry-summary.position-relative
+                    h1.font-weight-bold.text-7.mb-0
+                        a.text-decoration-none.text-color-dark.text-color-hover-primary(href='shop-product-full-width.html')= product.title
+                    .pb-0.clearfix.d-flex.align-items-center
+                        .float-left(title='Rated 3 out of 5')
+                            input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
+                        .review-num
+                            span.count(itemprop='ratingCount') (2
+                            |  reviews)
+                    .divider.divider-small
+                        hr.bg-color-grey-scale-4
+                    p.price.mb-3
+                        span.sale.text-color-dark= `GHS ${product.priceDiscount}` 
+                        span.amount= `GHS ${product.price}`
+                    p.text-3-4.mb-3
+                        | #{product.description}
+                    ul.list.list-unstyled.text-2
+                        li.mb-0
+                            | AVAILABILITY: 
+                            strong.text-color-dark AVAILABLE
+                        li.mb-0
+                            | SKU: 
+                            strong.text-color-dark 1234567890
+                    form.cart(enctype='multipart/form-data' method='post')
+                        table.table.table-borderless(style='max-width: 300px;')
+                            tbody
+                                tr
+                                    td.align-middle.text-2.px-0.py-2 SIZE:
+                                    td.px-0.py-2
+                                        .custom-select-1
+                                            select.form-control.text-1.h-auto.py-2(name='size')
+                                                option(value='') PLEASE CHOOSE
+                                                option(value='blue') Small
+                                                option(value='red') Normal
+                                                option(value='green') Big
+                                tr
+                                    td.align-middle.text-2.px-0.py-2 COLOR:
+                                    td.px-0.py-2
+                                        .custom-select-1
+                                            select.form-control.text-1.h-auto.py-2(name='color')
+                                                option(value='') PLEASE CHOOSE
+                                                option(value='blue') Blue
+                                                option(value='red') Red
+                                                option(value='green') Green
+                        hr
+                        .quantity.quantity-lg
+                            input.minus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='-')
+                            input.input-text.qty.text(type='text' title='Qty' value='1' name='quantity' min='1' step='1')
+                            input.plus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='+')
+                        button.btn.btn-dark.btn-modern.text-uppercase.bg-color-hover-primary.border-color-hover-primary(href='shop-cart.html') Add to cart
+                        hr
+                    .d-flex.align-items-center
+                        ul.social-icons.social-icons-medium.social-icons-clean-with-border.social-icons-clean-with-border-border-grey.social-icons-clean-with-border-icon-dark.mr-3.mb-0
+                            // Facebook
+                            li.social-icons-facebook
+                                a(href='http://www.facebook.com/sharer.php?u=https://www.okler.net' target='_blank' data-toggle='tooltip' data-placement='top' title='Share On Facebook')
+                                    i.fab.fa-facebook-f
+                            // Google+
+                            li.social-icons-googleplus
+                                a(href='https://plus.google.com/share?url=https://www.okler.net' target='_blank' data-toggle='tooltip' data-placement='top' title='Share On Google+')
+                                    i.fab.fa-google-plus-g
+                            // Twitter
+                            li.social-icons-twitter
+                                a(href='https://twitter.com/share?url=https://www.okler.net&text=Simple%20Share%20Buttons&hashtags=simplesharebuttons' target='_blank' data-toggle='tooltip' data-placement='top' title='Share On Twitter')
+                                    i.fab.fa-twitter
+                            // Email
+                            li.social-icons-email
+                                a(href='mailto:?Subject=Share This Page&Body=I%20saw%20this%20and%20thought%20of%20you!%20 https://www.okler.net' data-toggle='tooltip' data-placement='top' title='Share By Email')
+                                    i.far.fa-envelope
+                        a.d-flex.align-items-center.text-decoration-none.text-color-dark.text-color-hover-primary.font-weight-semibold.text-2(href='#')
+                            i.far.fa-heart.mr-1
+                            |  SAVE TO WISHLIST

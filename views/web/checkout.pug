@@ -1,0 +1,226 @@
+extends base
+
+block content
+
+    .main.shop.pb-4(role='main')
+        .container
+            .row
+                .col
+                    ul.breadcrumb.breadcrumb-dividers-no-opacity.font-weight-bold.text-6.justify-content-center.my-5
+                        //- li.text-transform-none.mr-2
+                        //-     a.text-decoration-none.text-color-dark.text-color-hover-primary(href='shop-cart.html') Shopping Cart
+                        li.text-transform-none.text-color-dark.mr-2
+                            a.text-decoration-none.text-color-primary(href='/checkout') Checkout
+                        li.text-transform-none.text-color-grey-lighten
+                            a.text-decoration-none.text-color-grey-lighten.text-color-hover-primary(href='shop-order-complete.html') Order Complete
+            .row.coupon-form-wrapper.collapse.mb-5
+                .col
+                    .card.border-width-3.border-radius-0.border-color-hover-dark
+                        .card-body
+                            form(role='form' method='post' action='')
+                                .d-flex.align-items-center
+                                    input.form-control.h-auto.border-radius-0.line-height-1.py-3(type='text' name='couponCode' placeholder='Coupon Code' required='')
+                                    button.btn.btn-light.btn-modern.text-color-dark.bg-color-light-scale-2.text-color-hover-light.bg-color-hover-primary.text-uppercase.text-3.font-weight-bold.border-0.border-radius-0.ws-nowrap.btn-px-4.py-3.ml-2(type='submit') Apply Coupon
+            form.checkoutForm.needs-validation(role='form')
+                .row
+                    .col-lg-7.mb-4.mb-lg-0
+                        h2.text-color-dark.font-weight-bold.text-5-6.mb-3 Billing Details
+                        .form-row
+                            .form-group.col-md-6
+                                label
+                                    | First Name 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='firstName' value='' required='')
+                            .form-group.col-md-6
+                                label
+                                    | Last Name 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='lastName' value='' required='')
+                        .form-row
+                            .form-group.col
+                                label Company Name
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='companyName' value='')
+                        .form-row
+                            .form-group.col
+                                label
+                                    | Country/Region 
+                                    span.text-color-danger *
+                                .custom-select-1
+                                    select.form-control.border-radius-0.h-auto.py-2(name='country' required='')
+                                        option(value='' selected='')
+                                        option(value='Ghana') Ghana
+                                        //- option(value='Nigeria') Nigeria
+                                        //- option(value='USA') USA
+                                        //- option(value='UK') United Kingdon
+                        .form-row
+                            .form-group.col
+                                label
+                                    | Street Address 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='address1' value='' placeholder='House number and street name' required='')
+                        .form-row
+                            .form-group.col
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='address2' value='' placeholder='Apartment, suite, unit, etc...')
+                        .form-row
+                            .form-group.col
+                                label
+                                    | Town/City 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='city' value='' required='')
+                        .form-row
+                            .form-group.col
+                                label
+                                    | State 
+                                    span.text-color-danger *
+                                .custom-select-1
+                                    select.form-control.border-radius-0.h-auto.py-2(name='state' required='')
+                                        option(value='' selected='')
+                                        option(value='ny') Nova York
+                                        option(value='ca') California
+                                        option(value='tx') Texas
+                                        option(value='') Florida
+                        .form-row
+                            .form-group.col
+                                label
+                                    | ZIP 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='text' name='zip' value='' required='')
+                        .form-row
+                            .form-group.col
+                                label
+                                    | Phone 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='number' name='phone' value='' required='')
+                        .form-row
+                            .form-group.col
+                                label
+                                    | Email Address 
+                                    span.text-color-danger *
+                                input.form-control.border-radius-0.h-auto.py-2(type='email' name='email' value='' required='')
+                        .form-row
+                            .form-group.col
+                                .custom-checkbox-1(data-toggle='collapse' data-target='.shipping-field-wrapper')
+                                    input#shipAddress(type='checkbox' name='shipAddress' value='1')
+                                    label(for='shipAddress') Ship to a different address ?
+                        // Ship to a differente address fields
+                        .shipping-field-wrapper.collapse
+                            .form-row
+                                .form-group.col-md-6
+                                    label
+                                        | First Name 
+                                        span.text-color-danger *
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingFirstName' value='' required='')
+                                .form-group.col-md-6
+                                    label
+                                        | Last Name 
+                                        span.text-color-danger *
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingLastName' value='' required='')
+                            .form-row
+                                .form-group.col
+                                    label Company Name
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingCompanyName' value='')
+                            .form-row
+                                .form-group.col
+                                    label
+                                        | Country/Region 
+                                        span.text-color-danger *
+                                    .custom-select-1
+                                        select.form-control.border-radius-0.h-auto.py-2(name='shippingCountry' required='')
+                                            option(value='' selected='')
+                                            option(value='usa') United States
+                                            option(value='spa') Spain
+                                            option(value='fra') France
+                                            option(value='uk') United Kingdon
+                            .form-row
+                                .form-group.col
+                                    label
+                                        | Street Address 
+                                        span.text-color-danger *
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingAddress1' value='' placeholder='House number and street name' required='')
+                                .form-group.col
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingAddress2' value='' placeholder='Apartment, suite, unit, etc...' required='')
+                            .form-row
+                                .form-group.col
+                                    label
+                                        | Town/City 
+                                        span.text-color-danger *
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingCity' value='' required='')
+                            .form-row
+                                .form-group.col
+                                    label
+                                        | State 
+                                        span.text-color-danger *
+                                    .custom-select-1
+                                        select.form-control.border-radius-0.h-auto.py-2(name='shippingState' required='')
+                                            option(value='' selected='')
+                                            option(value='ny') Nova York
+                                            option(value='ca') California
+                                            option(value='tx') Texas
+                                            option(value='') Florida
+                            .form-row
+                                .form-group.col
+                                    label
+                                        | ZIP 
+                                        span.text-color-danger *
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingZip' value='' required='')
+                            .form-row
+                                .form-group.col
+                                    label
+                                        | Phone 
+                                        span.text-color-danger *
+                                    input.form-control.border-radius-0.h-auto.py-2(type='number' name='shippingPhone' value='' required='')
+                            // End of Ship to a differente address fields
+                        .form-row
+                            .form-group.col
+                                label Order Notes
+                                textarea.form-control.border-radius-0.h-auto.py-2(name='orderNotes' rows='5' placeholder='Notes about you orderm e.g. special notes for delivery')
+                    .col-lg-5
+                        .card.border-width-3.border-radius-0.border-color-hover-dark(data-plugin-sticky='' data-plugin-options="{'minWidth': 991, 'containerSelector': '.row', 'padding': {'top': 85}}")
+                            .card-body
+                                h4.font-weight-bold.text-uppercase.text-4.mb-3 Your Order
+                                table.shop_table.cart-totals.mb-3
+                                    tbody
+                                        tr.insertCartItems
+                                            td.orderItems.border-top-0(colspan='2')
+                                                strong.text-color-dark Products
+                                        tr.cart-subtotal
+                                            td.border-top-0
+                                                strong.text-color-dark Subtotal
+                                            td.border-top-0.text-right
+                                                strong
+                                                    span.cartSubtotal.amount.font-weight-medium $431
+                                        tr.shipping
+                                            td(colspan='2')
+                                                strong.d-block.text-color-dark.mb-2 Shipping 
+                                                    | 
+                                                    span.text-color-danger *
+                                                .d-flex.flex-column
+                                                    label.shippingMethod.d-flex.align-items-center.text-color-grey.mb-0(for='shipping_method2')
+                                                        input#shipping_method2.mr-2(type='radio' name='shippingMethod' value='local-pickup' data-shipping-rate='0')
+                                                        | 																Local Pickup
+                                                    label.shippingMethod.d-flex.align-items-center.text-color-grey.mb-0(for='shipping_method3')
+                                                        input#shipping_method3.deliveryFee.mr-2(type='radio' name='shippingMethod' value='delivery-15' data-shipping-rate='15' checked)
+                                                        | 																Flat Rate: ghc15.00
+                                        tr.total
+                                            td
+                                                strong.text-color-dark.text-3-4 Total
+                                            td.text-right
+                                                strong.text-color-dark
+                                                    span.orderTotal.amount.text-color-dark.text-5 $0
+                                        tr.payment-methods
+                                            td(colspan='2')
+                                                strong.d-block.text-color-dark.mb-2 Payment Methods
+                                                .d-flex.flex-column
+                                                    label.d-flex.align-items-center.text-color-grey.mb-0(for='payment_method1')
+                                                        input#payment_method1.mr-2(type='radio' name='paymentMethod' value='cod' checked='')
+                                                        | 																Cash On Delivery
+                                                    label.d-flex.align-items-center.text-color-grey.mb-0(for='payment_method2')
+                                                        input#payment_method2.mr-2(type='radio' name='paymentMethod' value='paystack')
+                                                        | 														Card / Momo
+                                        tr
+                                            td(colspan='2')
+                                                | Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
+                                a(href='order-complete.html')
+                                    button.btn.btn-dark.btn-modern.btn-block.text-uppercase.bg-color-hover-primary.border-color-hover-primary.border-radius-0.text-3.py-3(type='submit')
+                                        | Place Order 
+                                        i.fas.fa-arrow-right.ml-2

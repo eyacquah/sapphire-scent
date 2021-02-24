@@ -1,0 +1,91 @@
+extends base
+
+block content
+
+  .main.shop.pb-4(role='main')
+    .container
+      .row.justify-content-center
+        .col-lg-8
+          .card.border-width-3.border-radius-0.border-color-success
+            .card-body.text-center
+              p.text-color-dark.font-weight-bold.text-4-5.mb-0
+                i.fas.fa-check.text-color-success.mr-1
+                |  Thank You. Your Order has been received.
+          .d-flex.flex-column.flex-md-row.justify-content-between.py-3.px-4.my-4
+            .text-center
+              span
+                | Order Number 
+                br
+                strong.text-color-dark= order.orderNum
+            .text-center.mt-4.mt-md-0
+              span
+                | Date 
+                br
+                strong.text-color-dark= `${order.date}`
+            .text-center.mt-4.mt-md-0
+              span
+                | Email 
+                br
+                strong.text-color-dark= order.customer.email
+            .text-center.mt-4.mt-md-0
+              span
+                | Total 
+                br
+                strong.text-color-dark= `GHS ${order.totalAmount}`
+            .text-center.mt-4.mt-md-0
+              span
+                | Payment Method 
+                br
+                strong.text-color-dark= order.paymentMethod
+          .card.border-width-3.border-radius-0.border-color-hover-dark.mb-4
+            .card-body
+              h4.font-weight-bold.text-uppercase.text-4.mb-3 Your Order
+              table.shop_table.cart-totals.mb-0
+                tbody
+                  tr
+                    td.border-top-0(colspan='2')
+                      strong.text-color-dark Product
+                  // PRODUCTS
+                  each product in products
+                    tr
+                      td
+                        strong.d-block.text-color-dark.line-height-1.font-weight-semibold
+                          | #{product.type.title} 
+                          span.product-qty= `x${product.orderQuantity}`
+                      td.text-right.align-top
+                        span.amount.font-weight-medium.text-color-grey= `GHS ${product.type.priceDiscount || product.type.price}`
+                  tr.cart-subtotal
+                    td.border-top-0
+                      strong.text-color-dark Subtotal
+                    td.border-top-0.text-right
+                      strong
+                        span.amount.font-weight-medium= `GHS ${order.subtotal}`
+                  tr.shipping
+                    td.border-top-0
+                      strong.text-color-dark Shipping
+                    td.border-top-0.text-right
+                      strong
+                        span.amount.font-weight-medium= `GHS ${order.shippingFee}`
+                  tr.total
+                    td
+                      strong.text-color-dark.text-3-4 Total
+                    td.text-right
+                      strong.text-color-dark
+                        span.amount.text-color-dark.text-5= `GHS ${order.totalAmount}`
+          .row.pt-3
+            .col-lg-6.mb-4.mb-lg-0
+              h2.text-color-dark.font-weight-bold.text-5-6.mb-1 Billing Address
+              ul.list.list-unstyled.text-2.mb-0
+                li.mb-0= order.customer.name
+                li.mb-0= `${order.customer.address.streetAddress}, ${order.customer.address.city}`
+                li.mb-0= order.customer.address.region
+                li.mb-0= order.customer.phoneNumber
+                li.mt-3.mb-0= order.customer.email
+            .col-lg-6
+              h2.text-color-dark.font-weight-bold.text-5-6.mb-1 Shipping Address
+              ul.list.list-unstyled.text-2.mb-0
+                li.mb-0= order.orderReciepient.name
+                li.mb-0= `${order.shippingAddress.streetAddress}, ${order.shippingAddress.city}`
+                li.mb-0= order.shippingAddress.region
+                li.mb-0= order.orderReciepient.phoneNumber
+                li.mt-3.mb-0= order.customer.email
