@@ -44,7 +44,6 @@ exports.getCategoryProducts = catchAsync(async (req, res, next) => {
     slug: req.params.categorySlug,
   }).populate("products");
 
-  // console.log(cat.products.length);
   const numResults = cat.products.length;
   const RES_PER_PAGE = 10;
   const numOfPages = Math.ceil(numResults / RES_PER_PAGE);
@@ -54,8 +53,6 @@ exports.getCategoryProducts = catchAsync(async (req, res, next) => {
   res.locals.currPage = currPage;
   res.locals.numOfPages = numOfPages;
   res.locals.pageLimit = RES_PER_PAGE;
-
-  // console.log(numOfPages);
 
   // Execute Query
   const features = new APIFeatures(
@@ -112,9 +109,6 @@ exports.getSearchResults = catchAsync(async (req, res, next) => {
     }),
     req.query
   ).paginate();
-  // .filter()
-  // .sort()
-  // .limitFields()
 
   const products = await features.query;
 
@@ -154,7 +148,7 @@ exports.getOrderCompletePage = catchAsync(async (req, res, next) => {
   order.date = date.toLocaleString("en-GB", options);
   let id = order._id;
   id = `${id}`;
-  // console.log(typeof `${id}`, `${id}`);
+
   order.orderNum = `GH-${id.slice(-5).toUpperCase()}`;
 
   res.status(200).render("web/order-complete", {

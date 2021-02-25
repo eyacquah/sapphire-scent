@@ -35,31 +35,31 @@ block content
                 .row.products.product-thumb-info-list(data-plugin-masonry='' data-plugin-options="{'layoutMode': 'fitRows'}")
                     //- PRODUCT
                     each product in promoProducts
-
-                        .col-12.col-sm-6.col-lg-3
-                            .product.mb-0
-                                .product-thumb-info.border-0.mb-3
-                                    .product-thumb-info-badges-wrapper
-                                        - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
-                                            span.badge.badge-ecommerce.badge-primary NEW
-                                        span.badge.badge-ecommerce.badge-danger= `${product.amountOff}% OFF`
-                                    .addtocart-btn-wrapper.addToCart(data-id=product._id)
-                                        a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
-                                            i.icons.icon-bag
-                                    a(href=`/products/${product.slug}`)
-                                        .product-thumb-info-image.product-thumb-info-image-effect
-                                            img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
-                                            img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[1]}`)
-                                .d-flex.justify-content-between
-                                    div
-                                        a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
-                                        h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
-                                            a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
-                                //- div(title='Rated 5 out of 5')
-                                //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
-                                p.price.text-5.mb-3
-                                    span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
-                                    span.amount= `GHS ${product.priceDiscount}`
+                        -if(product.isVisible)
+                            .col-12.col-sm-6.col-lg-3
+                                .product.mb-0
+                                    .product-thumb-info.border-0.mb-3
+                                        .product-thumb-info-badges-wrapper
+                                            - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
+                                                span.badge.badge-ecommerce.badge-primary NEW
+                                            span.badge.badge-ecommerce.badge-danger= `${product.amountOff}% OFF`
+                                        .addtocart-btn-wrapper.addToCart(data-id=product._id)
+                                            a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
+                                                i.icons.icon-bag
+                                        a(href=`/products/${product.slug}`)
+                                            .product-thumb-info-image.product-thumb-info-image-effect
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[1]}`)
+                                    .d-flex.justify-content-between
+                                        div
+                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
+                                            h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                                                a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
+                                    //- div(title='Rated 5 out of 5')
+                                    //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                                    p.price.text-5.mb-3
+                                        span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
+                                        span.amount= `GHS ${product.priceDiscount}`
     // promos end
     // new products
     .main.shop.pt-4(role='main')
@@ -73,28 +73,29 @@ block content
                 .row.products.product-thumb-info-list(data-plugin-masonry='' data-plugin-options="{'layoutMode': 'fitRows'}")
                     //- PRODUCT
                     each product in newProducts
-                        .col-12.col-sm-6.col-lg-3
-                            .product.mb-0
-                                .product-thumb-info.border-0.mb-3
-                                    .product-thumb-info-badges-wrapper
-                                        span.badge.badge-ecommerce.badge-primary NEW
-                                    .addtocart-btn-wrapper.addToCart(data-id=product._id)
-                                        a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
-                                            i.icons.icon-bag
-                                    a(href=`/products/${product.slug}`)
-                                        .product-thumb-info-image
-                                            img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
-                                .d-flex.justify-content-between
-                                    div
-                                        a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
-                                        h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
-                                            a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
-                                //- div(title='Rated 5 out of 5')
-                                //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
-                                p.price.text-5.mb-3
-                                    span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
-                                    - if(product.priceDiscount)
-                                        span.amount= `GHS ${product.priceDiscount}`
+                        -if(product.isVisible)
+                            .col-12.col-sm-6.col-lg-3
+                                .product.mb-0
+                                    .product-thumb-info.border-0.mb-3
+                                        .product-thumb-info-badges-wrapper
+                                            span.badge.badge-ecommerce.badge-primary NEW
+                                        .addtocart-btn-wrapper.addToCart(data-id=product._id)
+                                            a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
+                                                i.icons.icon-bag
+                                        a(href=`/products/${product.slug}`)
+                                            .product-thumb-info-image
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
+                                    .d-flex.justify-content-between
+                                        div
+                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
+                                            h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                                                a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
+                                    //- div(title='Rated 5 out of 5')
+                                    //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                                    p.price.text-5.mb-3
+                                        span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
+                                        - if(product.priceDiscount)
+                                            span.amount= `GHS ${product.priceDiscount}`
     // new products end
     // rotating text
     .container

@@ -15,7 +15,7 @@ export const updateOrder = async (form) => {
 
     const res = await axios({
       method: "PATCH",
-      url: `http://127.0.0.1:8000/api/v1/orders/${form.dataset.id}`,
+      url: `/api/v1/orders/${form.dataset.id}`,
       data,
     });
 
@@ -31,7 +31,7 @@ export const deleteOrder = async (id) => {
   try {
     const res = await axios({
       method: "DELETE",
-      url: `http://127.0.0.1:8000/api/v1/orders/${id}`,
+      url: `/api/v1/orders/${id}`,
     });
     if (res.status === 204) {
       window.location.href = `${window.location.origin}/dashboard/orders/all`;

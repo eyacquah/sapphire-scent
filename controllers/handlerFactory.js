@@ -17,14 +17,11 @@ exports.deleteOne = (Model) =>
 exports.updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
     // Handling PATCH, expects only props that should be updated
-    // console.log(req.body);
+
     const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
-    console.log("WORKING-----");
-
-    console.log(doc);
 
     if (!doc) return next(new AppError("No document found with that ID", 404));
 

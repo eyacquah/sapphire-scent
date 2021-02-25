@@ -75,7 +75,7 @@ function displayOrderTotal(e) {
 
 async function handleCheckout(e) {
   e.preventDefault();
-  // console.log(this.firstName.value);
+
   await getCheckoutFormData(this);
 }
 

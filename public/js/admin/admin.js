@@ -2,7 +2,7 @@ import regeneratorRuntime from "regenerator-runtime";
 
 import { createOrUpdateProduct, deleteProduct } from "./products";
 import { createCategory, deleteCategory } from "./category";
-import { login } from "./login";
+import { login, logout } from "./login";
 import { updateOrder, deleteOrder } from "./order";
 
 const productForms = document.querySelectorAll(".productForm");
@@ -10,8 +10,11 @@ const categoryForm = document.querySelector(".categoryForm");
 const confirmDeleteProductBtns = document.querySelectorAll(".confirmDelete");
 const deleteCategoryBtn = document.querySelector(".deleteCategory");
 const loginForm = document.querySelector(".loginForm");
+const logoutBtn = document.querySelector(".logout");
 const orderForm = document.querySelector(".orderForm");
 const deleteOrderBtn = document.querySelector(".deleteOrder");
+// const searchInput = document.querySelector(".searchInput");
+const searchInputForm = document.querySelector(".searchInputForm");
 
 ///////////// HANDLER FUNCTIONS
 
@@ -40,6 +43,11 @@ async function handleLoginForm(e) {
   await login(this);
 }
 
+async function handleLogout(e) {
+  e.preventDefault();
+  await logout();
+}
+
 async function handleOrderForm(e) {
   e.preventDefault();
   await updateOrder(this);
@@ -50,6 +58,13 @@ async function handleDeleteOrder(e) {
   await deleteOrder(this.dataset.id);
 }
 
+function handleSearchForm(e) {
+  e.preventDefault();
+
+  window.location.assign(
+    `/dashboard/search?product=${this.searchInput.value.trim()}`
+  );
+}
 // ASSIGN HANDLERS
 
 if (productForms) {
@@ -73,3 +88,7 @@ if (loginForm) loginForm.addEventListener("submit", handleLoginForm);
 if (orderForm) orderForm.addEventListener("submit", handleOrderForm);
 
 if (deleteOrderBtn) deleteOrderBtn.addEventListener("click", handleDeleteOrder);
+
+searchInputForm.addEventListener("submit", handleSearchForm);
+
+logoutBtn.addEventListener("click", handleLogout);

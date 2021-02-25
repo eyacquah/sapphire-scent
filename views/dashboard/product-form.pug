@@ -38,6 +38,16 @@ block content
                                         option.category(data-id=category.id selected)= category.title
                                     - if(category.id !== product.category.id)
                                         option.category(data-id=category.id)= category.title
+                        .form-group
+                            label(for='visibility') Is Visibile
+                            select#visibility.form-control
+                                - if(product.isVisible)
+                                    option.visible(data-bool='yes' selected) Yes
+                                    option.visible(data-bool='no') No
+                                -if(!product.isVisible)
+                                    option.visible(data-bool='yes') Yes
+                                    option.visible(data-bool='no' selected) No
+
                         .row
                             .col-md-5.mb-3
                                 label(for='images') Pictures of product

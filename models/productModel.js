@@ -52,6 +52,10 @@ const productSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "Category",
     },
+    isVisible: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     toJSON: { virtuals: true },

@@ -7,7 +7,7 @@ export const login = async (form) => {
 
     const res = await axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/api/v1/users/login",
+      url: "/api/v1/users/login",
       data: {
         email,
         password,
@@ -16,6 +16,18 @@ export const login = async (form) => {
 
     if (res.data.status === "success") {
       location.assign("/dashboard");
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const logout = async () => {
+  try {
+    const res = await axios.get("/api/v1/users/logout");
+
+    if (res.data.status === "success") {
+      window.location.href = window.location.href;
     }
   } catch (err) {
     console.error(err);

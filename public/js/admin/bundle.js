@@ -2684,64 +2684,59 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var product = {
-  title: "",
-  description: "",
-  price: 0,
-  priceDiscount: 0,
-  category: ""
-};
-
 var createOrUpdateProduct = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(form) {
     var _document$getElementB;
 
-    var productId, productForm, images, i;
+    var productId, productForm, visibility, images, i;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             productId = form.dataset.id;
             productForm = new FormData();
+            visibility = form.visibility.selectedOptions[0].dataset.bool === "yes" ? true : false;
             productForm.append("title", form.title.value);
             productForm.append("description", form.description.value);
             productForm.append("price", form.price.value);
             productForm.append("priceDiscount", form.priceDiscount.value);
             productForm.append("category", form.categories.selectedOptions[0].dataset.id);
+            productForm.append("isVisible", visibility); // return;
+
             images = (_document$getElementB = document.getElementById("images")) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.files;
 
             if (!(!images && productId)) {
-              _context.next = 12;
+              _context.next = 14;
               break;
             }
 
-            _context.next = 11;
+            _context.next = 13;
             return updateProduct(productForm, productId);
 
-          case 11:
+          case 13:
             return _context.abrupt("return", _context.sent);
 
-          case 12:
+          case 14:
             for (i = 0; i < images.length; i++) {
               productForm.append("images", images[i]);
             }
 
             if (!(images && productId)) {
-              _context.next = 17;
+              _context.next = 19;
               break;
             }
 
-            _context.next = 16;
+            _context.next = 18;
             return updateProduct(productForm, productId);
 
-          case 16:
+          case 18:
             return _context.abrupt("return", _context.sent);
 
-          case 17:
-            _context.next = 19;
+          case 19:
+            _context.next = 21;
             return createProduct(productForm);
 
-          case 19:
+          case 21:
           case "end":
             return _context.stop();
         }
@@ -2764,36 +2759,34 @@ var updateProduct = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            console.log("OKAY!");
-            _context2.next = 4;
+            _context2.next = 3;
             return (0, _axios.default)({
               method: "PATCH",
-              url: "http://127.0.0.1:8000/api/v1/products/".concat(id),
+              url: "/api/v1/products/".concat(id),
               data: data
             });
 
-          case 4:
+          case 3:
             res = _context2.sent;
-            console.log(res.data.data);
 
             if (res.data.status === "success") {
               window.location.href = "".concat(window.location.origin, "/dashboard/products/update/").concat(res.data.data.slug);
             }
 
-            _context2.next = 12;
+            _context2.next = 10;
             break;
 
-          case 9:
-            _context2.prev = 9;
+          case 7:
+            _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
             console.error(_context2.t0);
 
-          case 12:
+          case 10:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 9]]);
+    }, _callee2, null, [[0, 7]]);
   }));
 
   return function updateProduct(_x2, _x3) {
@@ -2812,7 +2805,7 @@ var createProduct = /*#__PURE__*/function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: "POST",
-              url: "http://127.0.0.1:8000/api/v1/products",
+              url: "/api/v1/products",
               data: data
             });
 
@@ -2855,7 +2848,7 @@ var deleteProduct = /*#__PURE__*/function () {
             _context4.next = 3;
             return (0, _axios.default)({
               method: "DELETE",
-              url: "http://127.0.0.1:8000/api/v1/products/".concat(id)
+              url: "/api/v1/products/".concat(id)
             });
 
           case 3:
@@ -2911,40 +2904,36 @@ var createCategory = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             category = {};
-            category.title = form.title.value.trim(); //   const catForm = new FormData();
-            //   catForm.append("title", form.title.value.trim());
-            //   console.log(catForm.get("title"));
-
-            console.log(category);
-            _context.prev = 3;
-            _context.next = 6;
+            category.title = form.title.value.trim();
+            _context.prev = 2;
+            _context.next = 5;
             return (0, _axios.default)({
               method: "POST",
-              url: "http://127.0.0.1:8000/api/v1/categories",
+              url: "/api/v1/categories",
               data: category
             });
 
-          case 6:
+          case 5:
             res = _context.sent;
 
             if (res.data.status === "success") {
               window.location.href = "".concat(window.location.origin, "/dashboard/categories/all");
             }
 
-            _context.next = 13;
+            _context.next = 12;
             break;
 
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](3);
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](2);
             console.error(_context.t0);
 
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[3, 10]]);
+    }, _callee, null, [[2, 9]]);
   }));
 
   return function createCategory(_x) {
@@ -2965,7 +2954,7 @@ var deleteCategory = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: "DELETE",
-              url: "http://127.0.0.1:8000/api/v1/categories/".concat(id)
+              url: "/api/v1/categories/".concat(id)
             });
 
           case 3:
@@ -3003,7 +2992,7 @@ exports.deleteCategory = deleteCategory;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.login = void 0;
+exports.logout = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -3026,7 +3015,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 5;
             return (0, _axios.default)({
               method: "POST",
-              url: "http://127.0.0.1:8000/api/v1/users/login",
+              url: "/api/v1/users/login",
               data: {
                 email: email,
                 password: password
@@ -3062,6 +3051,47 @@ var login = /*#__PURE__*/function () {
 }();
 
 exports.login = login;
+
+var logout = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var res;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return _axios.default.get("/api/v1/users/logout");
+
+          case 3:
+            res = _context2.sent;
+
+            if (res.data.status === "success") {
+              window.location.href = window.location.href;
+            }
+
+            _context2.next = 10;
+            break;
+
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](0);
+            console.error(_context2.t0);
+
+          case 10:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 7]]);
+  }));
+
+  return function logout() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.logout = logout;
 },{"axios":"../../../node_modules/axios/index.js"}],"order.js":[function(require,module,exports) {
 "use strict";
 
@@ -3097,7 +3127,7 @@ var updateOrder = /*#__PURE__*/function () {
             _context.next = 6;
             return (0, _axios.default)({
               method: "PATCH",
-              url: "http://127.0.0.1:8000/api/v1/orders/".concat(form.dataset.id),
+              url: "/api/v1/orders/".concat(form.dataset.id),
               data: data
             });
 
@@ -3142,7 +3172,7 @@ var deleteOrder = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: "DELETE",
-              url: "http://127.0.0.1:8000/api/v1/orders/".concat(id)
+              url: "/api/v1/orders/".concat(id)
             });
 
           case 3:
@@ -3198,8 +3228,11 @@ var categoryForm = document.querySelector(".categoryForm");
 var confirmDeleteProductBtns = document.querySelectorAll(".confirmDelete");
 var deleteCategoryBtn = document.querySelector(".deleteCategory");
 var loginForm = document.querySelector(".loginForm");
+var logoutBtn = document.querySelector(".logout");
 var orderForm = document.querySelector(".orderForm");
-var deleteOrderBtn = document.querySelector(".deleteOrder"); ///////////// HANDLER FUNCTIONS
+var deleteOrderBtn = document.querySelector(".deleteOrder"); // const searchInput = document.querySelector(".searchInput");
+
+var searchInputForm = document.querySelector(".searchInputForm"); ///////////// HANDLER FUNCTIONS
 
 function handleProductForms(_x) {
   return _handleProductForms.apply(this, arguments);
@@ -3321,44 +3354,43 @@ function _handleLoginForm() {
   return _handleLoginForm.apply(this, arguments);
 }
 
-function handleOrderForm(_x6) {
-  return _handleOrderForm.apply(this, arguments);
+function handleLogout(_x6) {
+  return _handleLogout.apply(this, arguments);
 }
 
-function _handleOrderForm() {
-  _handleOrderForm = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.default.mark(function _callee6(e) {
+function _handleLogout() {
+  _handleLogout = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.default.mark(function _callee6(e) {
     return _regeneratorRuntime.default.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
             e.preventDefault();
             _context6.next = 3;
-            return (0, _order.updateOrder)(this);
+            return (0, _login.logout)();
 
           case 3:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, this);
+    }, _callee6);
   }));
+  return _handleLogout.apply(this, arguments);
+}
+
+function handleOrderForm(_x7) {
   return _handleOrderForm.apply(this, arguments);
 }
 
-function handleDeleteOrder(_x7) {
-  return _handleDeleteOrder.apply(this, arguments);
-} // ASSIGN HANDLERS
-
-
-function _handleDeleteOrder() {
-  _handleDeleteOrder = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.default.mark(function _callee7(e) {
+function _handleOrderForm() {
+  _handleOrderForm = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.default.mark(function _callee7(e) {
     return _regeneratorRuntime.default.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
             e.preventDefault();
             _context7.next = 3;
-            return (0, _order.deleteOrder)(this.dataset.id);
+            return (0, _order.updateOrder)(this);
 
           case 3:
           case "end":
@@ -3367,8 +3399,38 @@ function _handleDeleteOrder() {
       }
     }, _callee7, this);
   }));
+  return _handleOrderForm.apply(this, arguments);
+}
+
+function handleDeleteOrder(_x8) {
   return _handleDeleteOrder.apply(this, arguments);
 }
+
+function _handleDeleteOrder() {
+  _handleDeleteOrder = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.default.mark(function _callee8(e) {
+    return _regeneratorRuntime.default.wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            e.preventDefault();
+            _context8.next = 3;
+            return (0, _order.deleteOrder)(this.dataset.id);
+
+          case 3:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, this);
+  }));
+  return _handleDeleteOrder.apply(this, arguments);
+}
+
+function handleSearchForm(e) {
+  e.preventDefault();
+  window.location.assign("/dashboard/search?product=".concat(this.searchInput.value.trim()));
+} // ASSIGN HANDLERS
+
 
 if (productForms) {
   productForms.forEach(function (form) {
@@ -3387,5 +3449,7 @@ if (deleteCategoryBtn) deleteCategoryBtn.addEventListener("click", handleDeleteC
 if (loginForm) loginForm.addEventListener("submit", handleLoginForm);
 if (orderForm) orderForm.addEventListener("submit", handleOrderForm);
 if (deleteOrderBtn) deleteOrderBtn.addEventListener("click", handleDeleteOrder);
+searchInputForm.addEventListener("submit", handleSearchForm);
+logoutBtn.addEventListener("click", handleLogout);
 },{"regenerator-runtime":"../../../node_modules/regenerator-runtime/runtime.js","./products":"products.js","./category":"category.js","./login":"login.js","./order":"order.js"}]},{},["admin.js"], null)
 //# sourceMappingURL=/bundle.js.map

@@ -8,9 +8,11 @@ const router = express.Router();
 // Routes
 
 router.use(adminController.getLoginTemplate);
-router.use(authController.protect);
+// router.use(authController.protect);
 
 router.get("/", adminController.getDashboard);
+
+router.get("/search", adminController.getSearchResults);
 
 router.get("/products/update/:slug", adminController.getUpdateProductForm);
 router.get("/products/:slug/delete", adminController.confirmDeleteProduct);

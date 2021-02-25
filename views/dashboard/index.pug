@@ -32,6 +32,11 @@ block content
                             select#categories.form-control
                                 each category in categories
                                     option.category(data-id=category.id)= category.title
+                        .form-group
+                            label(for='visibility') Is Visibile
+                            select#visibility.form-control
+                                option.visible(data-bool='yes') Yes
+                                option.visible(data-bool='no') No
                                    
                         .row
                             .col-md-5.mb-3

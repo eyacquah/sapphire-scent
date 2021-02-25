@@ -8,12 +8,11 @@ let ref;
 const paystackPublic = "pk_test_23c82fb58c925434b6231b6534a9a49954808378";
 
 const paymentComplete = async () => {
-  console.log("Verifying..");
-  const res = await axios.get(`http://127.0.0.1:8000/api/v1/payments/${ref}`);
+  const res = await axios.get(`/api/v1/payments/${ref}`);
   // Do some webhook stuff
   // Create order
   // Redirect to order complete page of created order
-  // console.log(res);
+
   // return;
   if (res.data.status === "success") {
     await createOrder(true);
@@ -25,9 +24,7 @@ const paymentCancelled = () => {
 };
 
 const generateRef = async (name) => {
-  const res = await axios.get(
-    `http://127.0.0.1:8000/api/v1/payments/create-ref/${name}`
-  );
+  const res = await axios.get(`/api/v1/payments/create-ref/${name}`);
 
   return res.data;
 };

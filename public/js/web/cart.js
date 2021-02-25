@@ -18,7 +18,7 @@ export const cart = {
 
 export const getProduct = async (id) => {
   try {
-    const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/${id}`);
+    const res = await axios.get(`/api/v1/products/${id}`);
 
     if (res.data.status === "success") {
       return res.data.data.doc;

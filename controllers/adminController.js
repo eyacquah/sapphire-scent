@@ -1,17 +1,30 @@
+const { promisify } = require("util");
+const jwt = require("jsonwebtoken");
+
 const catchAsync = require("../utils/catchAsync");
 const Product = require("../models/productModel");
 const Category = require("../models/categoryModel");
 const Order = require("../models/orderModel");
 const Customer = require("../models/customerModel");
+const User = require("../models/userModel");
 const APIFeatures = require("../utils/apiFeatures");
 
-exports.getLoginTemplate = catchAsync(async (req, res, next) => {
-  if (req.cookies.jwt) return next();
+exports.getLoginTemplate = async (req, res, next) => {
+  try {
+    const token = req.cookies.jwt;
+    const decodedToken = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_SECRET
+    );
 
-  res.status(200).render("dashboard/login", {
-    title: "Login",
-  });
-});
+    await User.findById(decodedToken.id);
+    return next();
+  } catch (err) {
+    res.status(200).render("dashboard/login", {
+      title: "Login",
+    });
+  }
+};
 
 exports.getDashboard = catchAsync(async (req, res, next) => {
   const categories = await Category.find();
@@ -139,8 +152,6 @@ exports.getOrderDetail = catchAsync(async (req, res, next) => {
   order.payStatus = order.paid ? "Paid" : "Pending";
   order.delStatus = order.delivered ? "Delivered" : "Pending";
 
-  // console.log(order);
-
   res.status(200).render("dashboard/order-detail", {
     title: "Order Detail",
     order,
@@ -169,9 +180,48 @@ exports.confirmDeleteCategory = catchAsync(async (req, res, next) => {
 
 exports.confirmDeleteOrder = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id);
-  console.log(order);
 
   res.status(200).render("dashboard/delete-order", {
     order,
+  });
+});
+
+exports.getSearchResults = catchAsync(async (req, res, next) => {
+  const { product } = req.query;
+
+  const results = await Product.find({
+    title: { $regex: new RegExp(`^${product}`, "i") },
+  });
+
+  const features = new APIFeatures(
+    Product.find({
+      title: { $regex: new RegExp(`^${product}`, "i") },
+    }),
+    req.query
+  ).paginate();
+
+  const allProducts = await features.query;
+
+  const products = allProducts.map((item) => {
+    item.amountOff = item.priceDiscount
+      ? 100 - Math.floor((item.priceDiscount / item.price) * 100)
+      : 0;
+
+    return item;
+  });
+
+  const numResults = results.length;
+  const RES_PER_PAGE = 10;
+  const numOfPages = Math.ceil(numResults / RES_PER_PAGE);
+  const currPage = +req.query.page || 1;
+
+  res.locals.currPage = currPage;
+  res.locals.numOfPages = numOfPages;
+  res.locals.pageLimit = RES_PER_PAGE;
+  res.locals.query = product;
+
+  res.status(200).render("dashboard/product-list", {
+    title: "Admin",
+    products,
   });
 });

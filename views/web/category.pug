@@ -8,28 +8,29 @@ block content
                 .row.products.product-thumb-info-list(data-plugin-masonry='' data-plugin-options="{'layoutMode': 'fitRows'}")
                     //- Products
                     each product in products
-                        .col-12.col-sm-6.col-lg-3
-                            .product.mb-0
-                                .product-thumb-info.border-0.mb-3
-                                    .product-thumb-info-badges-wrapper
-                                        //- IF product was created in the last 30 days
-                                        - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
-                                            span.badge.badge-ecommerce.badge-primary NEW
-                                    .addtocart-btn-wrapper.addToCart(data-id=product._id)
-                                        a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
-                                            i.icons.icon-bag
-                                    a(href=`/products/${product.slug}`)
-                                        .product-thumb-info-image
-                                            img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
-                                .d-flex.justify-content-between
-                                    div
-                                        a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') electronics
-                                        h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
-                                            a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
-                                p.price.text-5.mb-3
-                                    span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
-                                    - if(product.priceDiscount)
-                                        span.amount= `GHS ${product.priceDiscount}`
+                        -if(product.isVisible)
+                            .col-12.col-sm-6.col-lg-3
+                                .product.mb-0
+                                    .product-thumb-info.border-0.mb-3
+                                        .product-thumb-info-badges-wrapper
+                                            //- IF product was created in the last 30 days
+                                            - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
+                                                span.badge.badge-ecommerce.badge-primary NEW
+                                        .addtocart-btn-wrapper.addToCart(data-id=product._id)
+                                            a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
+                                                i.icons.icon-bag
+                                        a(href=`/products/${product.slug}`)
+                                            .product-thumb-info-image
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
+                                    .d-flex.justify-content-between
+                                        div
+                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') electronics
+                                            h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                                                a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
+                                    p.price.text-5.mb-3
+                                        span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
+                                        - if(product.priceDiscount)
+                                            span.amount= `GHS ${product.priceDiscount}`
                 
                 - if(numOfPages > 1)
                     .row.mt-4.pagParent(data-numOfPages=numOfPages data-currPage=currPage)

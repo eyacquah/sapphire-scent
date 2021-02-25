@@ -91,9 +91,7 @@ export async function getCheckoutFormData(form) {
 
   // Check if Billing Address !== Shipping Address
 
-  // console.log(shippingFieldForm);
   if (shippingFieldForm.classList.contains("show")) {
-    console.log("Shipping to a diffrent address..");
     // Grab all form data
     const shippingName = `${form.shippingFirstName.value.trim()} ${form.shippingLastName.value.trim()}`;
     const shippingCountry = form.shippingCountry.value;
@@ -102,7 +100,6 @@ export async function getCheckoutFormData(form) {
     const shippingState = form.shippingState.value;
     const shippingZip = form.shippingZip.value.trim();
     const shippingPhone = form.shippingPhone.value.trim();
-    // console.log(shippingPhone, validator(shippingPhone));
 
     if (!validator.isMobilePhone(shippingPhone))
       return showAlert("error", "Enter a valid phone number for shipping info");

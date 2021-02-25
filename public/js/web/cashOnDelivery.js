@@ -15,7 +15,7 @@ export const getOrCreateCustomer = async () => {
     const { customer } = orderDetails;
     const res = await axios({
       method: "POST",
-      url: `http://127.0.0.1:8000/api/v1/customers/get-or-create`,
+      url: `/api/v1/customers/get-or-create`,
       data: customer,
     });
 
@@ -36,11 +36,10 @@ export const createOrder = async (payStatus) => {
 
     const res = await axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/api/v1/orders",
+      url: "/api/v1/orders",
       data: orderDetails,
     });
 
-    // console.log(res.data.data);
     if (res.data.status === "success") {
       // cart.items.length = 0;
       cart.items.splice(0, cart.items.length);

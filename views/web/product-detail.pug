@@ -2,141 +2,142 @@ extends base
 
 block content
 
-  .main.shop.pt-4(role='main')
-    .container
-      .row
-        .col-md-5.mb-5.mb-md-0
-          .thumb-gallery-wrapper
-            .thumb-gallery-detail.owl-carousel.owl-theme.manual.nav-inside.nav-style-1.nav-dark.mb-3
-              each image in product.images
-                div
-                  img.img-fluid(alt=`${product.title}` src=`/img/products/${image}` data-zoom-image=`/img/products/${image}`)
-            .thumb-gallery-thumbs.owl-carousel.owl-theme.manual.thumb-gallery-thumbs
-              each image in product.images
-                .cur-pointer
-                  img.img-fluid(alt=`${product.title}` src=`/img/products/${image}`)
-        .col-md-7
-          .summary.entry-summary.position-relative
-            h1.mb-0.font-weight-bold.text-7= product.title
-            .divider.divider-small
-              hr.bg-color-grey-scale-4
-            p.price.mb-3
-              span.sale.text-color-dark= product.priceDiscount
-              span.amount= product.price
-            p.text-3-4.mb-3
-              | #{product.description}
-            ul.list.list-unstyled.text-2
-              li.mb-0
-                | AVAILABILITY: 
-                strong.text-color-dark AVAILABLE
-            form.cart.cart-form(enctype='multipart/form-data' data-id=product._id)
-              hr
-              .quantity.quantity-lg
-                input.minus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='-')
-                input#itemQty.input-text.qty.text(type='text' title='Qty' value='1' name='quantity' min='1' step='1')
-                input.plus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='+')
-              button.btn.btn-dark.btn-modern.text-uppercase.bg-color-hover-primary.border-color-hover-primary(type='submit' data-id=product._id) Add to cart
-              hr
-      .row.mb-4
-        .col
-          #description.tabs.tabs-simple.tabs-simple-full-width-line.tabs-product.tabs-dark.mb-2
-            ul.nav.nav-tabs.justify-content-start
-              li.nav-item.active
-                a.nav-link.active.font-weight-bold.text-3-4.text-uppercase.py-2.px-3(href='#productDescription' data-toggle='tab') Description
-              //- li.nav-item
-              //-   a.nav-link.font-weight-bold.text-3-4.text-uppercase.py-2.px-3(href='#productInfo' data-toggle='tab') Additional Information
-            .tab-content.p-0
-              #productDescription.tab-pane.px-0.py-3.active
-                p
-                  | #{product.description}
-                p.m-0
-                  | #{product.description}
-              #productInfo.tab-pane.px-0.py-3
-                //- table.table.table-striped.m-0
-                //-   tbody
-                //-     tr
-                //-       th.border-top-0
-                //-         | Size:
-                //-       td.border-top-0
-                //-         | Unique
-                //-     tr
-                //-       th
-                //-         | Colors
-                //-       td
-                //-         | Red, Blue
-                //-     tr
-                //-       th
-                //-         | Material
-                //-       td
-                //-         | 100% Leather
-              #productReviews.tab-pane.px-0.py-3
-                ul.comments
-                  li
-                    .comment
-                      .img-thumbnail.border-0.p-0.d-none.d-md-block
-                        img.avatar.rounded-circle(alt='' src='/web/img/avatars/avatar-2.jpg')
-                      .comment-block
-                        .comment-arrow
-                        span.comment-by
-                          strong Jack Doe
-                          span.float-right
-                            .pb-0.clearfix
-                              .float-left(title='Rated 3 out of 5')
-                                input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
-                              .review-num
-                                span.count(itemprop='ratingCount') 2
-                                |  reviews
-                        p
-                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.
-                  li
-                    .comment
-                      .img-thumbnail.border-0.p-0.d-none.d-md-block
-                        img.avatar.rounded-circle(alt='' src='/web/img/avatars/avatar.jpg')
-                      .comment-block
-                        .comment-arrow
-                        span.comment-by
-                          strong John Doe
-                          span.float-right
-                            .pb-0.clearfix
-                              .float-left(title='Rated 3 out of 5')
-                                input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
-                              .review-num
-                                span.count(itemprop='ratingCount') 2
-                                |  reviews
-                        p
-                          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra odio, gravida urna varius vitae, gravida pellentesque urna varius vitae.
-      .row
-        .col
-          h4.font-weight-semibold.text-4.mb-3 RELATED PRODUCTS
-          hr.mt-0
-          .products.row
-            .col
-              .owl-carousel.owl-theme.nav-style-1.nav-outside.nav-outside.nav-dark.mb-0(data-plugin-options="{'loop': false, 'autoplay': false, 'items': 4, 'nav': true, 'dots': false, 'margin': 20, 'autoplayHoverPause': true, 'autoHeight': true, 'stagePadding': '75', 'navVerticalOffset': '50px'}")
-                each prod in category.products
-                  - if(prod.id !== product.id)
-                    .product.mb-0
-                      .product-thumb-info.border-0.mb-3
-                        .product-thumb-info-badges-wrapper
-                          - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
-                              span.badge.badge-ecommerce.badge-success NEW
-                        .addtocart-btn-wrapper.addToCart(data-id=product._id)
-                          a.text-decoration-none.addtocart-btn(href='' data-tooltip='' data-original-title='Add to Cart')
-                            i.icons.icon-bag
-                        //- a.quick-view.text-uppercase.font-weight-semibold.text-2(href=`/products/${prod.slug}`)
-                          | QUICK VIEW
-                        a(href=`/products/${prod.slug}`)
-                          .product-thumb-info-image
-                            img.img-fluid(alt='' src=`/img/products/${prod.images[0]}`)
-                      .d-flex.justify-content-between
-                        div
-                          a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/${category.slug}`)= category.title
-                          h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
-                            a.text-color-dark.text-color-hover-primary(href=`/products/${prod.slug}`)= prod.title
-                        //- a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
-                        //-   i.far.fa-heart
-                      div(title='Rated 5 out of 5')
-                        input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
-                      p.price.text-5.mb-3
-                        span.sale.text-color-dark.font-weight-medium= prod.price
-                        span.amount= prod.priceDiscount
-                  
+  -if(product.isVisible)
+    .main.shop.pt-4(role='main')
+      .container
+        .row
+          .col-md-5.mb-5.mb-md-0
+            .thumb-gallery-wrapper
+              .thumb-gallery-detail.owl-carousel.owl-theme.manual.nav-inside.nav-style-1.nav-dark.mb-3
+                each image in product.images
+                  div
+                    img.img-fluid(alt=`${product.title}` src=`/img/products/${image}` data-zoom-image=`/img/products/${image}`)
+              .thumb-gallery-thumbs.owl-carousel.owl-theme.manual.thumb-gallery-thumbs
+                each image in product.images
+                  .cur-pointer
+                    img.img-fluid(alt=`${product.title}` src=`/img/products/${image}`)
+          .col-md-7
+            .summary.entry-summary.position-relative
+              h1.mb-0.font-weight-bold.text-7= product.title
+              .divider.divider-small
+                hr.bg-color-grey-scale-4
+              p.price.mb-3
+                span.sale.text-color-dark= product.priceDiscount
+                span.amount= product.price
+              p.text-3-4.mb-3
+                | #{product.description}
+              ul.list.list-unstyled.text-2
+                li.mb-0
+                  | AVAILABILITY: 
+                  strong.text-color-dark AVAILABLE
+              form.cart.cart-form(enctype='multipart/form-data' data-id=product._id)
+                hr
+                .quantity.quantity-lg
+                  input.minus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='-')
+                  input#itemQty.input-text.qty.text(type='text' title='Qty' value='1' name='quantity' min='1' step='1')
+                  input.plus.text-color-hover-light.bg-color-hover-primary.border-color-hover-primary(type='button' value='+')
+                button.btn.btn-dark.btn-modern.text-uppercase.bg-color-hover-primary.border-color-hover-primary(type='submit' data-id=product._id) Add to cart
+                hr
+        .row.mb-4
+          .col
+            #description.tabs.tabs-simple.tabs-simple-full-width-line.tabs-product.tabs-dark.mb-2
+              ul.nav.nav-tabs.justify-content-start
+                li.nav-item.active
+                  a.nav-link.active.font-weight-bold.text-3-4.text-uppercase.py-2.px-3(href='#productDescription' data-toggle='tab') Description
+                //- li.nav-item
+                //-   a.nav-link.font-weight-bold.text-3-4.text-uppercase.py-2.px-3(href='#productInfo' data-toggle='tab') Additional Information
+              .tab-content.p-0
+                #productDescription.tab-pane.px-0.py-3.active
+                  p
+                    | #{product.description}
+                  p.m-0
+                    | #{product.description}
+                #productInfo.tab-pane.px-0.py-3
+                  //- table.table.table-striped.m-0
+                  //-   tbody
+                  //-     tr
+                  //-       th.border-top-0
+                  //-         | Size:
+                  //-       td.border-top-0
+                  //-         | Unique
+                  //-     tr
+                  //-       th
+                  //-         | Colors
+                  //-       td
+                  //-         | Red, Blue
+                  //-     tr
+                  //-       th
+                  //-         | Material
+                  //-       td
+                  //-         | 100% Leather
+                #productReviews.tab-pane.px-0.py-3
+                  ul.comments
+                    li
+                      .comment
+                        .img-thumbnail.border-0.p-0.d-none.d-md-block
+                          img.avatar.rounded-circle(alt='' src='/web/img/avatars/avatar-2.jpg')
+                        .comment-block
+                          .comment-arrow
+                          span.comment-by
+                            strong Jack Doe
+                            span.float-right
+                              .pb-0.clearfix
+                                .float-left(title='Rated 3 out of 5')
+                                  input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
+                                .review-num
+                                  span.count(itemprop='ratingCount') 2
+                                  |  reviews
+                          p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.
+                    li
+                      .comment
+                        .img-thumbnail.border-0.p-0.d-none.d-md-block
+                          img.avatar.rounded-circle(alt='' src='/web/img/avatars/avatar.jpg')
+                        .comment-block
+                          .comment-arrow
+                          span.comment-by
+                            strong John Doe
+                            span.float-right
+                              .pb-0.clearfix
+                                .float-left(title='Rated 3 out of 5')
+                                  input.d-none(type='text' value='3' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'primary', 'size':'xs'}")
+                                .review-num
+                                  span.count(itemprop='ratingCount') 2
+                                  |  reviews
+                          p
+                            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra odio, gravida urna varius vitae, gravida pellentesque urna varius vitae.
+        .row
+          .col
+            h4.font-weight-semibold.text-4.mb-3 RELATED PRODUCTS
+            hr.mt-0
+            .products.row
+              .col
+                .owl-carousel.owl-theme.nav-style-1.nav-outside.nav-outside.nav-dark.mb-0(data-plugin-options="{'loop': false, 'autoplay': false, 'items': 4, 'nav': true, 'dots': false, 'margin': 20, 'autoplayHoverPause': true, 'autoHeight': true, 'stagePadding': '75', 'navVerticalOffset': '50px'}")
+                  each prod in category.products
+                    - if(prod.id !== product.id)
+                      .product.mb-0
+                        .product-thumb-info.border-0.mb-3
+                          .product-thumb-info-badges-wrapper
+                            - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
+                                span.badge.badge-ecommerce.badge-success NEW
+                          .addtocart-btn-wrapper.addToCart(data-id=product._id)
+                            a.text-decoration-none.addtocart-btn(href='' data-tooltip='' data-original-title='Add to Cart')
+                              i.icons.icon-bag
+                          //- a.quick-view.text-uppercase.font-weight-semibold.text-2(href=`/products/${prod.slug}`)
+                            | QUICK VIEW
+                          a(href=`/products/${prod.slug}`)
+                            .product-thumb-info-image
+                              img.img-fluid(alt='' src=`/img/products/${prod.images[0]}`)
+                        .d-flex.justify-content-between
+                          div
+                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/${category.slug}`)= category.title
+                            h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                              a.text-color-dark.text-color-hover-primary(href=`/products/${prod.slug}`)= prod.title
+                          //- a.text-decoration-none.text-color-default.text-color-hover-dark.text-4(href='#')
+                          //-   i.far.fa-heart
+                        div(title='Rated 5 out of 5')
+                          input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                        p.price.text-5.mb-3
+                          span.sale.text-color-dark.font-weight-medium= prod.price
+                          span.amount= prod.priceDiscount
+                    

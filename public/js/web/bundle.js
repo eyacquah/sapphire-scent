@@ -9777,7 +9777,7 @@ var getOrCreateCustomer = /*#__PURE__*/function () {
             _context.next = 4;
             return (0, _axios.default)({
               method: "POST",
-              url: "http://127.0.0.1:8000/api/v1/customers/get-or-create",
+              url: "/api/v1/customers/get-or-create",
               data: customer
             });
 
@@ -9833,14 +9833,13 @@ var createOrder = /*#__PURE__*/function () {
             _context2.next = 8;
             return (0, _axios.default)({
               method: "POST",
-              url: "http://127.0.0.1:8000/api/v1/orders",
+              url: "/api/v1/orders",
               data: _order.orderDetails
             });
 
           case 8:
             res = _context2.sent;
 
-            // console.log(res.data.data);
             if (res.data.status === "success") {
               // cart.items.length = 0;
               _cart.cart.items.splice(0, _cart.cart.items.length);
@@ -9901,22 +9900,21 @@ var paymentComplete = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log("Verifying..");
-            _context.next = 3;
-            return _axios.default.get("http://127.0.0.1:8000/api/v1/payments/".concat(ref));
+            _context.next = 2;
+            return _axios.default.get("/api/v1/payments/".concat(ref));
 
-          case 3:
+          case 2:
             res = _context.sent;
 
             if (!(res.data.status === "success")) {
-              _context.next = 7;
+              _context.next = 6;
               break;
             }
 
-            _context.next = 7;
+            _context.next = 6;
             return (0, _cashOnDelivery.createOrder)(true);
 
-          case 7:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -9941,7 +9939,7 @@ var generateRef = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return _axios.default.get("http://127.0.0.1:8000/api/v1/payments/create-ref/".concat(name));
+            return _axios.default.get("/api/v1/payments/create-ref/".concat(name));
 
           case 2:
             res = _context2.sent;
@@ -10118,31 +10116,29 @@ function _getCheckoutFormData() {
             orderDetails.shippingMethod = shippingMethod;
             orderDetails.paymentMethod = paymentMethod;
             orderDetails.notes.push(note); // Check if Billing Address !== Shipping Address
-            // console.log(shippingFieldForm);
 
             if (!shippingFieldForm.classList.contains("show")) {
-              _context.next = 38;
+              _context.next = 37;
               break;
             }
 
-            console.log("Shipping to a diffrent address.."); // Grab all form data
-
+            // Grab all form data
             shippingName = "".concat(form.shippingFirstName.value.trim(), " ").concat(form.shippingLastName.value.trim());
             shippingCountry = form.shippingCountry.value;
             _shippingAddress = "".concat(form.shippingAddress1.value.trim(), " ").concat(form.shippingAddress2.value.trim());
             shippingCity = form.shippingCity.value.trim();
             shippingState = form.shippingState.value;
             shippingZip = form.shippingZip.value.trim();
-            shippingPhone = form.shippingPhone.value.trim(); // console.log(shippingPhone, validator(shippingPhone));
+            shippingPhone = form.shippingPhone.value.trim();
 
             if (_validator.default.isMobilePhone(shippingPhone)) {
-              _context.next = 34;
+              _context.next = 33;
               break;
             }
 
             return _context.abrupt("return", (0, _helper.showAlert)("error", "Enter a valid phone number for shipping info"));
 
-          case 34:
+          case 33:
             //   set shipping address to the filled address form
             reciepientShippingAddress = {
               country: shippingCountry,
@@ -10157,24 +10153,24 @@ function _getCheckoutFormData() {
             orderDetails.orderReciepient = reciepientDetails;
             orderDetails.shippingAddress = reciepientShippingAddress;
 
-          case 38:
+          case 37:
             if (!(orderDetails.paymentMethod === "paystack")) {
-              _context.next = 43;
+              _context.next = 42;
               break;
             }
 
-            _context.next = 41;
+            _context.next = 40;
             return (0, _paystack.payWithPaystack)();
 
-          case 41:
-            _context.next = 45;
+          case 40:
+            _context.next = 44;
             break;
 
-          case 43:
-            _context.next = 45;
+          case 42:
+            _context.next = 44;
             return (0, _cashOnDelivery.createOrder)();
 
-          case 45:
+          case 44:
           case "end":
             return _context.stop();
         }
@@ -10223,7 +10219,7 @@ var getProduct = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _axios.default.get("http://127.0.0.1:8000/api/v1/products/".concat(id));
+            return _axios.default.get("/api/v1/products/".concat(id));
 
           case 3:
             res = _context.sent;
@@ -10326,34 +10322,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.handleSearchForm = handleSearchForm;
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function handleSearchForm(_x) {
-  return _handleSearchForm.apply(this, arguments);
-}
-
-function _handleSearchForm() {
-  _handleSearchForm = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var searchInput;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            e.preventDefault();
-            searchInput = document.querySelector(".searchInput").value;
-            window.location.href = "http://127.0.0.1:8000/search?product=".concat(searchInput);
-            searchInput.value = "";
-
-          case 4:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _handleSearchForm.apply(this, arguments);
+function handleSearchForm(e) {
+  e.preventDefault();
+  var searchInput = document.querySelector(".searchInput").value;
+  window.location.href = "/search?product=".concat(searchInput);
+  searchInput.value = "";
 }
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -10526,8 +10499,7 @@ function _handleCheckout() {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            e.preventDefault(); // console.log(this.firstName.value);
-
+            e.preventDefault();
             _context4.next = 3;
             return (0, _order.getCheckoutFormData)(this);
 
