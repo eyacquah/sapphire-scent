@@ -87,9 +87,12 @@ const init = () => {
     cartQty.textContent = cart.totalItemQty;
     cartTotal.textContent = `GHS ${cart.subtotal}`;
     addListeners();
+  } else {
+    helperCart();
   }
 };
 
+// localStorage.clear("items");
 init();
 if (cartBtns)
   cartBtns.forEach((el) => el.addEventListener("click", handleAddToCart));
@@ -111,4 +114,3 @@ if (shippingMethodBtns) {
 }
 
 if (checkoutForm) checkoutForm.addEventListener("submit", handleCheckout);
-// localStorage.clear("items");

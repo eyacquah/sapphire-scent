@@ -2703,9 +2703,17 @@ var createOrUpdateProduct = /*#__PURE__*/function () {
             productForm.append("category", form.categories.selectedOptions[0].dataset.id);
             productForm.append("isVisible", visibility); // return;
 
-            images = (_document$getElementB = document.getElementById("images")) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.files;
+            images = (_document$getElementB = document.getElementById("images")) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.files; // images.length === 0
+            //   ?
+            //   : console.log("Updating with images...");
+            // if (productId) {
+            //   console.log("Updating with images and product");
+            // }
+            // console.log(productId);
+            // return;
+            // iF NO IMAGES, UPdate Without Images
 
-            if (!(!images && productId)) {
+            if (!(images.length === 0)) {
               _context.next = 14;
               break;
             }
@@ -2717,26 +2725,47 @@ var createOrUpdateProduct = /*#__PURE__*/function () {
             return _context.abrupt("return", _context.sent);
 
           case 14:
+            if (!(images.length === 0)) {
+              _context.next = 16;
+              break;
+            }
+
+            return _context.abrupt("return", console.log("Updating without images.. SHOULD NOT RUN!"));
+
+          case 16:
             for (i = 0; i < images.length; i++) {
               productForm.append("images", images[i]);
             }
 
-            if (!(images && productId)) {
-              _context.next = 19;
+            console.log(images.length);
+
+            if (!productId) {
+              _context.next = 22;
               break;
             }
 
-            _context.next = 18;
+            _context.next = 21;
             return updateProduct(productForm, productId);
 
-          case 18:
+          case 21:
             return _context.abrupt("return", _context.sent);
 
-          case 19:
-            _context.next = 21;
+          case 22:
+            if (!productId) {
+              _context.next = 24;
+              break;
+            }
+
+            return _context.abrupt("return", console.log("UPDATAING with images.. SHOULD NOT RUN"));
+
+          case 24:
+            _context.next = 26;
             return createProduct(productForm);
 
-          case 21:
+          case 26:
+            console.log("CREATING a new product..SHOULD NOT RUN");
+
+          case 27:
           case "end":
             return _context.stop();
         }

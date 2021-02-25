@@ -10522,8 +10522,11 @@ var init = function init() {
     cartQty.textContent = _cart.cart.totalItemQty;
     cartTotal.textContent = "GHS ".concat(_cart.cart.subtotal);
     addListeners();
+  } else {
+    helperCart();
   }
-};
+}; // localStorage.clear("items");
+
 
 init();
 if (cartBtns) cartBtns.forEach(function (el) {
@@ -10541,6 +10544,6 @@ if (shippingMethodBtns) {
   });
 }
 
-if (checkoutForm) checkoutForm.addEventListener("submit", handleCheckout); // localStorage.clear("items");
+if (checkoutForm) checkoutForm.addEventListener("submit", handleCheckout);
 },{"regenerator-runtime":"../../../node_modules/regenerator-runtime/runtime.js","./cart":"cart.js","./search":"search.js","./order":"order.js"}]},{},["index.js"], null)
 //# sourceMappingURL=/bundle.js.map

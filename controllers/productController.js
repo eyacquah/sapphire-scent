@@ -33,7 +33,7 @@ exports.uploadProductImages = upload.array("images", 7);
 
 // Resizing Uploaded Images
 exports.resizeProductImages = catchAsync(async (req, res, next) => {
-  if (!req.files) return next();
+  if (req.files.length === 0) return next();
 
   // Store the images in the body
   req.body.images = [];
@@ -53,6 +53,7 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
       req.body.images.push(filename);
     })
   );
+
   next();
 });
 
