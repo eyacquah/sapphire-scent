@@ -4,7 +4,8 @@
   "description": "E-commerce app for perfumes and more. ",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "start:prod": "SET NODE_ENV=production&& nodemon server.js",
     "debug": "ndb server.js",
     "watch:js": "parcel watch --no-hmr ./public/js/web/index.js --out-dir ./public/js/web --out-file bundle.js",
