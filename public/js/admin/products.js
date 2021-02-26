@@ -20,36 +20,17 @@ export const createOrUpdateProduct = async (form) => {
   // return;
   const images = document.getElementById("images")?.files;
 
-  // images.length === 0
-  //   ?
-  //   : console.log("Updating with images...");
-
-  // if (productId) {
-  //   console.log("Updating with images and product");
-  // }
-
-  // console.log(productId);
-
-  // return;
-  // iF NO IMAGES, UPdate Without Images
   if (images.length === 0) {
     return await updateProduct(productForm, productId);
-  }
-  if (images.length === 0) {
-    return console.log("Updating without images.. SHOULD NOT RUN!");
   }
 
   for (let i = 0; i < images.length; i++) {
     productForm.append("images", images[i]);
   }
 
-  console.log(images.length);
-
   if (productId) return await updateProduct(productForm, productId);
-  if (productId) return console.log("UPDATAING with images.. SHOULD NOT RUN");
 
-  await createProduct(productForm);
-  console.log("CREATING a new product..SHOULD NOT RUN");
+  return await createProduct(productForm);
 };
 
 const updateProduct = async (data, id) => {
