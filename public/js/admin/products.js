@@ -57,6 +57,8 @@ const createProduct = async (data) => {
       data,
     });
 
+    console.log(res);
+
     if (res.data.status === "success") {
       window.location.href = `${window.location.origin}/dashboard/products/all`;
     }
