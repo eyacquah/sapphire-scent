@@ -6,10 +6,14 @@ const router = express.Router();
 
 // router.get("/test", orderController.testPaystack);
 
+router.get("/create-ref/:name", orderController.generatePaystackREF);
+
+router.route("/:ref").get(orderController.getRefDoc);
+
 router
   .route("/")
   .get(orderController.getAllOrders)
-  .post(orderController.createOrder);
+  .post(orderController.handleCashOnDelivery);
 
 router
   .route("/:id")

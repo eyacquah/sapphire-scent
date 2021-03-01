@@ -8,8 +8,6 @@ const router = express.Router();
 
 // router.get("/checkout-session/:tourID", bookingController.getCheckoutSession);
 
-router.post("/get-or-create", customerController.getOrCreateCustomer);
-
 router
   .route("/")
   .get(customerController.getAllCustomers)

@@ -2,20 +2,27 @@
 
 import { orderDetails } from "./order";
 import { createOrder } from "./cashOnDelivery";
+import { cart } from "./cart";
+import { helperCart } from "./index";
+
 import axios from "axios";
 
 let ref;
 const paystackPublic = "pk_test_23c82fb58c925434b6231b6534a9a49954808378";
 
+// const
+
 const paymentComplete = async () => {
-  const res = await axios.get(`/api/v1/payments/${ref}`);
+  const res = await axios.get(`/api/v1/orders/${ref}`);
   // Do some webhook stuff
   // Create order
   // Redirect to order complete page of created order
 
-  // return;
+  console.log(res.data);
   if (res.data.status === "success") {
-    await createOrder(true);
+    cart.items.splice(0, cart.items.length);
+    helperCart();
+    window.location.href = `${window.location.origin}/orders/${res.data.data._id}`;
   }
 };
 
@@ -24,7 +31,7 @@ const paymentCancelled = () => {
 };
 
 const generateRef = async (name) => {
-  const res = await axios.get(`/api/v1/payments/create-ref/${name}`);
+  const res = await axios.get(`/api/v1/orders/create-ref/${name}`);
 
   return res.data;
 };
@@ -40,6 +47,7 @@ export const payWithPaystack = async () => {
     amount: orderDetails.totalAmount * 100,
     currency: "GHS",
     ref: ref,
+    metadata: orderDetails,
     callback: paymentComplete,
     onClose: paymentCancelled,
   });
