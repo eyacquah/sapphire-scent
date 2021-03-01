@@ -22,8 +22,11 @@ block content
               .divider.divider-small
                 hr.bg-color-grey-scale-4
               p.price.mb-3
-                span.sale.text-color-dark= product.priceDiscount
-                span.amount= product.price
+                - if(product.priceDiscount)
+                  span.sale.text-color-dark= `GHS ${product.priceDiscount}`
+                  span.amount= `GHS ${product.price}`
+                - if(!product.priceDiscount)
+                  span.sale.text-color-dark= `GHS ${product.price}`
               p.text-3-4.mb-3
                 | #{product.description}
               ul.list.list-unstyled.text-2

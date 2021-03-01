@@ -14,7 +14,6 @@ router.get("/checkout", webController.getCheckoutPage);
 
 router.get("/categories/:categorySlug", webController.getCategoryProducts);
 router.get("/products/:slug", webController.getProductDetail);
-router.get("/products/:slug/view", webController.getQuickView);
 router.get("/orders/:orderID", webController.getOrderCompletePage);
 
 module.exports = router;

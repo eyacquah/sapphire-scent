@@ -21,9 +21,6 @@ const orderTotalEl = document.querySelector(".orderTotal");
 const shippingMethodBtns = document.querySelectorAll(".shippingMethod");
 const checkoutForm = document.querySelector(".checkoutForm");
 
-// const pagParent = document.querySelector(".pagParent");
-//
-
 const addListeners = () => {
   const removeItemBtns = document.querySelectorAll(".remove-item");
   removeItemBtns.forEach((el) =>

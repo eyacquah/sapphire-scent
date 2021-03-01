@@ -12,18 +12,10 @@ footer#footer
             .col-md-6.col-lg-3.mb-5.mb-lg-0
                 h5.text-4.text-color-light.mb-3 CARTEGORIES
                 ul.list.list-unstyled.mb-0
-                    li.mb-0
-                        a(href='category.html') Purfume
-                    li.mb-0
-                        a(href='category.html') Watches
-                    li.mb-0
-                        a(href='category.html') Glasses
-                    li.mb-0
-                        a(href='category.html') Car Diffusers
-                    li.mb-0
-                        a(href='category.html') Office Diffusers
-                    li.mb-0
-                        a(href='category.html') Beard Oil
+                    each cat in categories
+                        li.mb-0
+                            a(href=`/categories/${cat.slug}`)= cat.title
+                   
             .col-md-6.col-lg-3.mb-4.mb-md-0
                 .contact-details
                     h5.text-3.mb-3 CONTACT US
@@ -58,6 +50,7 @@ footer#footer
                     p © Copyright 2021. All Rights Reserved.
 // /web/Vendor
 
+
 script(src='/web/vendor/jquery/jquery.min.js')
 script(src='/web/vendor/jquery.appear/jquery.appear.min.js')
 script(src='/web/vendor/jquery.easing/jquery.easing.min.js')
@@ -70,7 +63,7 @@ script(src='/web/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')
 script(src='/web/vendor/jquery.gmap/jquery.gmap.min.js')
 script(src='/web/vendor/jquery.lazyload/jquery.lazyload.min.js')
 script(src='/web/vendor/isotope/jquery.isotope.min.js')
-script(src='/web/vendor/owl.carousel/owl.carousel.js')
+script(src='/web/vendor/owl.carousel/owl.carousel.min.js')
 script(src='/web/vendor/magnific-popup/jquery.magnific-popup.min.js')
 script(src='/web/vendor/vide/jquery.vide.min.js')
 script(src='/web/vendor/vivus/vivus.min.js')

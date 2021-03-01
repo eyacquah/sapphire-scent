@@ -28,9 +28,11 @@ block content
                                             h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
                                                 a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
                                     p.price.text-5.mb-3
-                                        span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
                                         - if(product.priceDiscount)
-                                            span.amount= `GHS ${product.priceDiscount}`
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.priceDiscount}`
+                                            span.amount= `GHS ${product.price}`
+                                        - if(!product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
                 
                 - if(numOfPages > 1)
                     .row.mt-4.pagParent(data-numOfPages=numOfPages data-currPage=currPage)

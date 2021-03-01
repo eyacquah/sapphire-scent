@@ -58,8 +58,11 @@ block content
                                     //- div(title='Rated 5 out of 5')
                                     //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
                                     p.price.text-5.mb-3
-                                        span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
-                                        span.amount= `GHS ${product.priceDiscount}`
+                                        - if(product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.priceDiscount}`
+                                            span.amount= `GHS ${product.price}`
+                                        - if(!product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
     // promos end
     // new products
     .main.shop.pt-4(role='main')
@@ -93,9 +96,11 @@ block content
                                     //- div(title='Rated 5 out of 5')
                                     //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
                                     p.price.text-5.mb-3
-                                        span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
                                         - if(product.priceDiscount)
-                                            span.amount= `GHS ${product.priceDiscount}`
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.priceDiscount}`
+                                            span.amount= `GHS ${product.price}`
+                                        - if(!product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
     // new products end
     // rotating text
     .container

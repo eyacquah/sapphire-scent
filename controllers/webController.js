@@ -33,7 +33,7 @@ exports.getIndex = catchAsync(async (req, res, next) => {
   });
 
   res.status(200).render("web/index", {
-    title: "Admin",
+    title: "Home",
     newProducts,
     promoProducts,
   });
@@ -67,7 +67,7 @@ exports.getCategoryProducts = catchAsync(async (req, res, next) => {
   const products = await features.query;
 
   res.status(200).render("web/category", {
-    title: "Admin",
+    title: cat.title,
     products,
   });
 });
@@ -78,21 +78,10 @@ exports.getProductDetail = catchAsync(async (req, res, next) => {
     path: "products",
   });
 
-  // category.products.pop(product);
-
   res.status(200).render("web/product-detail", {
-    title: "Admin",
+    title: product.title,
     product,
     category,
-  });
-});
-
-exports.getQuickView = catchAsync(async (req, res, next) => {
-  const product = await Product.findOne({ slug: req.params.slug });
-
-  res.status(200).render("web/product-quick-view", {
-    title: "Admin",
-    product,
   });
 });
 
@@ -123,7 +112,7 @@ exports.getSearchResults = catchAsync(async (req, res, next) => {
   res.locals.query = product;
 
   res.status(200).render("web/results", {
-    title: "Admin",
+    title: "Search Results",
     products,
   });
 });

@@ -43,15 +43,10 @@ block content
                         .form-row
                             .form-group.col
                                 label
-                                    | Country/Region 
+                                    | Country 
                                     span.text-color-danger *
-                                .custom-select-1
-                                    select.form-control.border-radius-0.h-auto.py-2(name='country' required='')
-                                        option(value='' selected='')
-                                        option(value='Ghana') Ghana
-                                        //- option(value='Nigeria') Nigeria
-                                        //- option(value='USA') USA
-                                        //- option(value='UK') United Kingdon
+                                input.form-control.border-radius-0.h-auto.py-2(name='country' required='')
+                                        
                         .form-row
                             .form-group.col
                                 label
@@ -72,13 +67,8 @@ block content
                                 label
                                     | State 
                                     span.text-color-danger *
-                                .custom-select-1
-                                    select.form-control.border-radius-0.h-auto.py-2(name='state' required='')
-                                        option(value='' selected='')
-                                        option(value='ny') Nova York
-                                        option(value='ca') California
-                                        option(value='tx') Texas
-                                        option(value='') Florida
+                                input.form-control.border-radius-0.h-auto.py-2(name='state' required='')
+                                        
                         .form-row
                             .form-group.col
                                 label
@@ -122,15 +112,9 @@ block content
                             .form-row
                                 .form-group.col
                                     label
-                                        | Country/Region 
+                                        | Country
                                         span.text-color-danger *
-                                    .custom-select-1
-                                        select.form-control.border-radius-0.h-auto.py-2(name='shippingCountry' required='')
-                                            option(value='' selected='')
-                                            option(value='usa') United States
-                                            option(value='spa') Spain
-                                            option(value='fra') France
-                                            option(value='uk') United Kingdon
+                                    input.form-control.border-radius-0.h-auto.py-2(name='shippingCountry' required='')
                             .form-row
                                 .form-group.col
                                     label
@@ -138,7 +122,7 @@ block content
                                         span.text-color-danger *
                                     input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingAddress1' value='' placeholder='House number and street name' required='')
                                 .form-group.col
-                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingAddress2' value='' placeholder='Apartment, suite, unit, etc...' required='')
+                                    input.form-control.border-radius-0.h-auto.py-2(type='text' name='shippingAddress2' value='' placeholder='Apartment, suite, unit, etc...')
                             .form-row
                                 .form-group.col
                                     label
@@ -148,15 +132,10 @@ block content
                             .form-row
                                 .form-group.col
                                     label
-                                        | State 
+                                        | State/Region 
                                         span.text-color-danger *
-                                    .custom-select-1
-                                        select.form-control.border-radius-0.h-auto.py-2(name='shippingState' required='')
-                                            option(value='' selected='')
-                                            option(value='ny') Nova York
-                                            option(value='ca') California
-                                            option(value='tx') Texas
-                                            option(value='') Florida
+                                    input.form-control.border-radius-0.h-auto.py-2(name='shippingState' required='')
+                                            
                             .form-row
                                 .form-group.col
                                     label
