@@ -2,6 +2,7 @@ const catchAsync = require("../utils/catchAsync");
 const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
 const Order = require("../models/orderModel");
+const Slider = require("../models/sliderModel");
 
 const APIFeatures = require("../utils/apiFeatures");
 
@@ -15,6 +16,7 @@ exports.getIndex = catchAsync(async (req, res, next) => {
   const promoProducts = [];
 
   const allProducts = await Product.find();
+  allProducts.reverse();
 
   allProducts.forEach((product) => {
     if (
@@ -32,8 +34,12 @@ exports.getIndex = catchAsync(async (req, res, next) => {
     }
   });
 
+  const slider = await Slider.findById("603e1a9e45a8e80a8ca21fa9");
+  // console.log(slider);
+
   res.status(200).render("web/index", {
     title: "Home",
+    slider,
     newProducts,
     promoProducts,
   });
@@ -65,6 +71,7 @@ exports.getCategoryProducts = catchAsync(async (req, res, next) => {
     .paginate();
 
   const products = await features.query;
+  // products.reverse();
 
   res.status(200).render("web/category", {
     title: cat.title,

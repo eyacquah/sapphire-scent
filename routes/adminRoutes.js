@@ -27,5 +27,6 @@ router.get("/customers/all", adminController.getAllCustomers);
 router.get("/orders/all", adminController.getAllOrders);
 router.get("/orders/:id/delete", adminController.confirmDeleteOrder);
 router.get("/orders/:orderId", adminController.getOrderDetail);
+router.get("/sliders/update", adminController.getSliderUpdateForm);
 
 module.exports = router;

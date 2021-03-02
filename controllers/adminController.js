@@ -7,6 +7,7 @@ const Category = require("../models/categoryModel");
 const Order = require("../models/orderModel");
 const Customer = require("../models/customerModel");
 const User = require("../models/userModel");
+const Slider = require("../models/sliderModel");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.getLoginTemplate = async (req, res, next) => {
@@ -74,6 +75,8 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
   res.locals.pageLimit = RES_PER_PAGE;
   res.locals.query = product;
 
+  products.reverse();
+
   res.status(200).render("dashboard/product-list", {
     title: "All Products",
     products,
@@ -121,6 +124,8 @@ exports.getAllOrders = catchAsync(async (req, res, next) => {
     order.delStatus = order.delivered ? "Delivered" : "Pending";
     return order;
   });
+
+  orders.reverse();
 
   res.status(200).render("dashboard/order-list", {
     title: "All Orders",
@@ -223,5 +228,12 @@ exports.getSearchResults = catchAsync(async (req, res, next) => {
   res.status(200).render("dashboard/product-list", {
     title: "Admin",
     products,
+  });
+});
+
+exports.getSliderUpdateForm = catchAsync(async (req, res, next) => {
+  const slider = await Slider.findById("603e1a9e45a8e80a8ca21fa9");
+  res.status(200).render("dashboard/slider-form", {
+    slider,
   });
 });

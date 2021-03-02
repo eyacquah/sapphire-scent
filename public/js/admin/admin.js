@@ -4,6 +4,7 @@ import { createOrUpdateProduct, deleteProduct } from "./products";
 import { createCategory, deleteCategory } from "./category";
 import { login, logout } from "./login";
 import { updateOrder, deleteOrder } from "./order";
+import { updateSlider } from "./slider";
 
 const productForms = document.querySelectorAll(".productForm");
 const categoryForm = document.querySelector(".categoryForm");
@@ -15,6 +16,7 @@ const orderForm = document.querySelector(".orderForm");
 const deleteOrderBtn = document.querySelector(".deleteOrder");
 // const searchInput = document.querySelector(".searchInput");
 const searchInputForm = document.querySelector(".searchInputForm");
+const sliderForm = document.querySelector(".sliderForm");
 
 ///////////// HANDLER FUNCTIONS
 
@@ -65,6 +67,13 @@ function handleSearchForm(e) {
     `/dashboard/search?product=${this.searchInput.value.trim()}`
   );
 }
+
+async function handleSliderForm(e) {
+  e.preventDefault();
+  console.log("I'm working okay?");
+
+  await updateSlider(this);
+}
 // ASSIGN HANDLERS
 
 if (productForms) {
@@ -88,6 +97,8 @@ if (loginForm) loginForm.addEventListener("submit", handleLoginForm);
 if (orderForm) orderForm.addEventListener("submit", handleOrderForm);
 
 if (deleteOrderBtn) deleteOrderBtn.addEventListener("click", handleDeleteOrder);
+
+if (sliderForm) sliderForm.addEventListener("submit", handleSliderForm);
 
 searchInputForm.addEventListener("submit", handleSearchForm);
 

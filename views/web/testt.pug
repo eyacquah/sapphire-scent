@@ -1,0 +1,115 @@
+extends base
+
+block content
+
+    .main(role='main')
+        .container
+            .row
+                .col
+                    .owl-carousel.nav-inside.show-nav-hover.dots-inside(data-plugin-options="{'items': 1, 'loop': true, 'autoplay': true, 'autoplayTimeout': 5000, 'autoplayHoverPause': true, 'nav': true, 'dots': true, 'animateOut': 'fadeOut'}")
+                        div
+                            img(src='/web/img/slides/slide-1.jpg' data-thumb='/web/img/slides/slide-1.jpg' alt='')
+                        div
+                            img(src='/web/img/slides/slide-2.jpg' data-thumb='/web/img/slides/slide-2.jpg' alt='')
+        #home-intro.home-intro.home-intro-compact.bg-primary
+            .container
+                .row.align-items-center
+                    .col-lg-8
+                        p
+                            | Irresistible products
+                            | for stylish and classy women and men all 
+                            br
+                            span.highlighted-word over the world
+                    .col-lg-4
+                        .get-started.text-left.text-lg-right
+                            a.btn.btn-dark.btn-lg.text-3.font-weight-semibold.px-4.py-3(href='#') Get Started Now
+    // promos
+    .main.shop.pt-4(role='main')
+        .container
+            .row.pb-3
+                .col-lg-8
+                    h2.font-weight-normal.text-7
+                        | Our 
+                        strong.font-weight-extra-bold Promos
+            .masonry-loader.masonry-loader-showing
+                .row.products.product-thumb-info-list(data-plugin-masonry='' data-plugin-options="{'layoutMode': 'fitRows'}")
+                    //- PRODUCT
+                    each product in promoProducts
+                        -if(product.isVisible)
+                            .col-12.col-sm-6.col-lg-3
+                                .product.mb-0
+                                    .product-thumb-info.border-0.mb-3
+                                        .product-thumb-info-badges-wrapper
+                                            - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
+                                                span.badge.badge-ecommerce.badge-primary NEW
+                                            span.badge.badge-ecommerce.badge-danger= `${product.amountOff}% OFF`
+                                        .addtocart-btn-wrapper.addToCart(data-id=product._id)
+                                            a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
+                                                i.icons.icon-bag
+                                        a(href=`/products/${product.slug}`)
+                                            .product-thumb-info-image.product-thumb-info-image-effect
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[1]}`)
+                                    .d-flex.justify-content-between
+                                        div
+                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
+                                            h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                                                a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
+                                    //- div(title='Rated 5 out of 5')
+                                    //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                                    p.price.text-5.mb-3
+                                        - if(product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.priceDiscount}`
+                                            span.amount= `GHS ${product.price}`
+                                        - if(!product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
+    // promos end
+    // new products
+    .main.shop.pt-4(role='main')
+        .container
+            .row.pb-3
+                .col-lg-8
+                    h2.font-weight-normal.text-7
+                        | New 
+                        strong.font-weight-extra-bold Products
+            .masonry-loader.masonry-loader-showing
+                .row.products.product-thumb-info-list(data-plugin-masonry='' data-plugin-options="{'layoutMode': 'fitRows'}")
+                    //- PRODUCT
+                    each product in newProducts
+                        -if(product.isVisible)
+                            .col-12.col-sm-6.col-lg-3
+                                .product.mb-0
+                                    .product-thumb-info.border-0.mb-3
+                                        .product-thumb-info-badges-wrapper
+                                            span.badge.badge-ecommerce.badge-primary NEW
+                                        .addtocart-btn-wrapper.addToCart(data-id=product._id)
+                                            a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
+                                                i.icons.icon-bag
+                                        a(href=`/products/${product.slug}`)
+                                            .product-thumb-info-image
+                                                img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
+                                    .d-flex.justify-content-between
+                                        div
+                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
+                                            h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
+                                                a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
+                                    //- div(title='Rated 5 out of 5')
+                                    //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
+                                    p.price.text-5.mb-3
+                                        - if(product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.priceDiscount}`
+                                            span.amount= `GHS ${product.price}`
+                                        - if(!product.priceDiscount)
+                                            span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
+    // new products end
+    // rotating text
+    .container
+        .row.text-center.pt-3
+            .col-md-10.mx-md-auto
+                h1.word-rotator.slide.font-weight-bold.text-8.mb-3.appear-animation(data-appear-animation='fadeInUpShorter')
+                    span Sapphire Group products currently include
+                    span.word-rotator-words.bg-primary
+                        b.is-visible Sapphire Scents
+                        b Sapphire Time
+                        b Sapphire Apparel
+    // end of rotating text

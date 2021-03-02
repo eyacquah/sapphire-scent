@@ -6,16 +6,9 @@ block content
     .main.shop.pt-4(role='main')
       .container
         .row
-          .col-md-5.mb-5.mb-md-0
-            .thumb-gallery-wrapper
-              .thumb-gallery-detail.owl-carousel.owl-theme.manual.nav-inside.nav-style-1.nav-dark.mb-3
-                each image in product.images
-                  div
-                    img.img-fluid(alt=`${product.title}` src=`/img/products/${image}` data-zoom-image=`/img/products/${image}`)
-              .thumb-gallery-thumbs.owl-carousel.owl-theme.manual.thumb-gallery-thumbs
-                each image in product.images
-                  .cur-pointer
-                    img.img-fluid(alt=`${product.title}` src=`/img/products/${image}`)
+          .col-md-5.mb-5.mb-md-0   
+            div
+              img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}` data-zoom-image=`/img/products/${image}`)
           .col-md-7
             .summary.entry-summary.position-relative
               h1.mb-0.font-weight-bold.text-7= product.title

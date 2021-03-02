@@ -1,0 +1,14 @@
+extends base
+
+block content
+    main.col-md-9.ml-sm-auto.col-lg-10.px-md-4(role='main')
+        .container
+            h1 Slider form
+            form.sliderForm(data-id=slider.id)
+                .row
+                    .col-md-5.mb-3
+                        label(for='slides') Upload Images for Slider
+                        input#slides(type='file' name='Slides' multiple)
+                        .invalid-feedback
+                            | Please select a valid price.
+                    button.btn.btn-primary.btn-lg(type='submit') Upload
