@@ -52,6 +52,8 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     default: this.totalAmount - this.shippingFee,
   },
+  orderNum: String,
+  date: String,
   paymentMethod: String,
   notes: [
     {
