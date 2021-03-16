@@ -17,7 +17,7 @@ block content
                 thead
                     tr
                         th Date
-                        th Order ID
+                        th Order Number
                         th Customer
                         th Total Amount
                         th Payment Status
@@ -28,7 +28,7 @@ block content
                         tr
                             td= order.date
                             td
-                                a(href=`/dashboard/orders/${order._id}`)= order._id
+                                a(href=`/dashboard/orders/${order._id}`)= order.orderNum
                             td= order.customer.name
                             td= `GHS ${order.totalAmount}`
                             td= order.payStatus   

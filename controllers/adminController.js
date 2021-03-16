@@ -11,6 +11,8 @@ const Slider = require("../models/sliderModel");
 const APIFeatures = require("../utils/apiFeatures");
 
 exports.getLoginTemplate = async (req, res, next) => {
+  // await Order.deleteMany();
+  // console.log("DELETED");
   try {
     const token = req.cookies.jwt;
     const decodedToken = await promisify(jwt.verify)(
@@ -21,6 +23,7 @@ exports.getLoginTemplate = async (req, res, next) => {
     await User.findById(decodedToken.id);
     return next();
   } catch (err) {
+    // console.log(err);
     res.status(200).render("dashboard/login", {
       title: "Login",
     });
@@ -111,15 +114,6 @@ exports.getAllOrders = catchAsync(async (req, res, next) => {
   const results = await Order.find();
 
   const orders = results.map((order) => {
-    const date = new Date(Date.parse(order.createdAt));
-    const options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    };
-
-    order.date = date.toLocaleString("en-GB", options);
-
     order.payStatus = order.paid ? "Paid" : "Pending";
     order.delStatus = order.delivered ? "Delivered" : "Pending";
     return order;
@@ -136,13 +130,7 @@ exports.getAllOrders = catchAsync(async (req, res, next) => {
 exports.getOrderDetail = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.orderId);
 
-  const date = new Date(Date.parse(order.createdAt));
   const noteDate = new Date(Date.parse(order.notes[0].createdAt));
-  const options = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
 
   const noteOptions = {
     hour: "2-digit",
@@ -151,7 +139,6 @@ exports.getOrderDetail = catchAsync(async (req, res, next) => {
     timeZoneName: "short",
   };
 
-  order.date = date.toLocaleString("en-GB", options);
   order.notes[0].date = noteDate.toLocaleTimeString("en-GB", noteOptions);
 
   order.payStatus = order.paid ? "Paid" : "Pending";

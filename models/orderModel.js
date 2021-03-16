@@ -73,6 +73,26 @@ orderSchema.pre(/^find/, function (next) {
   next();
 });
 
+orderSchema.pre("save", function (next) {
+  // Create Order Number
+  let id = this._id;
+  id = `${id}`;
+
+  this.orderNum = `GH-${id.slice(-5).toUpperCase()}`;
+
+  // Create Human Readable Date
+  const date = new Date(Date.parse(this.createdAt));
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
+
+  this.date = date.toLocaleString("en-GB", options);
+
+  next();
+});
+
 const Order = mongoose.model("Order", orderSchema);
 
 module.exports = Order;

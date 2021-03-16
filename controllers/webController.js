@@ -134,19 +134,6 @@ exports.getOrderCompletePage = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.orderID);
   const { products } = order;
 
-  const date = new Date(Date.parse(order.createdAt));
-  const options = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
-
-  order.date = date.toLocaleString("en-GB", options);
-  let id = order._id;
-  id = `${id}`;
-
-  order.orderNum = `GH-${id.slice(-5).toUpperCase()}`;
-
   res.status(200).render("web/order-complete", {
     title: "Thanks for ordering",
     order,
