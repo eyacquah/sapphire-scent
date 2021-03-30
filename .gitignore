@@ -5,3 +5,8 @@ node_modules/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Added Due to Switch from AWS to Heroku
+.ebextensions/
+.npmrc
+.platform/
