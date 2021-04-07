@@ -76,7 +76,6 @@ exports.handleChargeSuccess = catchAsync(async (req, res, next) => {
   if (hash === req.headers["x-paystack-signature"]) {
     const event = req.body;
     console.log(event);
+    res.send(200);
   }
-
-  res.send(200);
 });

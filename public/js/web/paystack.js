@@ -18,7 +18,7 @@ const paymentComplete = async () => {
   // Create order
   // Redirect to order complete page of created order
 
-  console.log(res.data);
+  // console.log(res.data);
   if (res.data.status === "success") {
     cart.items.splice(0, cart.items.length);
     helperCart();

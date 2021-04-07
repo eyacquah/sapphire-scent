@@ -40,3 +40,12 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+// HEROKU ONLY
+process.on("SIGTERM", () => {
+  console.log("👋🏽 SIGTERM RECIEVED. Shutting down gracefully");
+
+  server.close(() => {
+    console.log("💥Process Terminated");
+  });
+});
