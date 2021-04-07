@@ -77,7 +77,7 @@ exports.handleChargeSuccess = catchAsync(async (req, res, next) => {
     const event = req.body;
 
     if (event.event === "charge.success")
-      await createOrder(event.data.metadata);
+      await createOrder(event.data.metadata, true);
   }
 
   res.send(200);
