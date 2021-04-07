@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/create-ref/:name", orderController.generatePaystackREF);
 
-router.route("/:ref").get(orderController.getRefDoc);
+router.route("/:ref").get(orderController.verifyPaystackTransaction);
 
 router.post("/charge-success", orderController.handleChargeSuccess);
 

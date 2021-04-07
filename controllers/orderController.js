@@ -53,16 +53,16 @@ exports.generatePaystackREF = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getRefDoc = catchAsync(async (req, res, next) => {
+exports.verifyPaystackTransaction = catchAsync(async (req, res, next) => {
   const verification = await paystack.transaction.verify(req.params.ref);
 
   if (!verification.status) return;
 
-  const order = await createOrder(verification.data.metadata, true);
+  // const order = await createOrder(verification.data.metadata, true);
 
-  res.status(201).json({
+  res.status(200).json({
     status: "success",
-    data: order,
+    // data: order,
   });
 });
 
@@ -75,7 +75,10 @@ exports.handleChargeSuccess = catchAsync(async (req, res, next) => {
 
   if (hash === req.headers["x-paystack-signature"]) {
     const event = req.body;
-    console.log(event);
-    res.send(200);
+
+    if (event.event === "charge.success")
+      await createOrder(event.data.metadata);
   }
+
+  res.send(200);
 });

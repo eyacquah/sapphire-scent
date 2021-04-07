@@ -4,6 +4,7 @@ import { orderDetails } from "./order";
 import { createOrder } from "./cashOnDelivery";
 import { cart } from "./cart";
 import { helperCart } from "./index";
+import { showAlert } from "./helper";
 
 import axios from "axios";
 
@@ -22,7 +23,9 @@ const paymentComplete = async () => {
   if (res.data.status === "success") {
     cart.items.splice(0, cart.items.length);
     helperCart();
-    window.location.href = `${window.location.origin}/orders/${res.data.data._id}`;
+
+    showAlert("success", "Order Recieved");
+    window.location.href = `${window.location.origin}`;
   }
 };
 
