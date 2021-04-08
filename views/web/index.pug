@@ -48,7 +48,7 @@ html
                     ul
                         each slide in slider.images
                             li(data-transition='fade')
-                                img.rev-slidebg(src=`/img/sliders/${slide}` alt='' data-bgposition='center center' data-bgfit='cover' data-bgrepeat='no-repeat')
+                                img.rev-slidebg(src=`${url}/${slide}` alt='' data-bgposition='center center' data-bgfit='cover' data-bgrepeat='no-repeat')
                         
             #home-intro.home-intro.bg-primary
                 .container
@@ -84,9 +84,10 @@ html
                                                     a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
                                                         i.icons.icon-bag
                                                 a(href=`/products/${product.slug}`)
+                                                    //- "https://sapphire-scent-bucket.s3.us-west-2.amazonaws.com/product-437.21080645297894-1617881124840-1.jpeg"
                                                     .product-thumb-info-image.product-thumb-info-image-effect
-                                                        img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
-                                                        img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[1]}`)
+                                                        img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[0]}`)
+                                                        img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[1]}`)
                                             .d-flex.justify-content-between
                                                 div
                                                     a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
@@ -131,7 +132,7 @@ html
                                                         i.icons.icon-bag
                                                 a(href=`/products/${product.slug}`)
                                                     .product-thumb-info-image
-                                                        img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}`)
+                                                        img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[0]}`)
                                             .d-flex.justify-content-between
                                                 div
                                                     a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title

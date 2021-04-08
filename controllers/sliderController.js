@@ -1,11 +1,18 @@
 const multer = require("multer");
 const sharp = require("sharp");
+const AWS = require("aws-sdk");
 
 const factory = require("./handlerFactory");
 const Slider = require("../models/sliderModel");
 
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+
+///////////////////////////////
+/// IMAGE PROCESSING BEFORE UPLOAD
+AWS.config.region = "us-west-2";
+
+const s3 = new AWS.S3();
 
 const multerStorage = multer.memoryStorage();
 
@@ -34,10 +41,21 @@ exports.resizeSliderImages = catchAsync(async (req, res, next) => {
         i + 1
       }.jpeg`;
 
-      await sharp(file.buffer)
+      const slider = await sharp(file.buffer)
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
-        .toFile(`public/img/sliders/${filename}`);
+        .toBuffer();
+      // .toFile(`public/img/sliders/${filename}`);
+
+      const s3Params = {
+        Bucket: process.env.S3_BUCKET,
+        Key: filename,
+        Body: slider,
+      };
+
+      s3.upload(s3Params, (err, data) => {
+        if (err) res.status(500).send(err);
+      });
 
       req.body.images.push(filename);
     })
@@ -48,13 +66,10 @@ exports.resizeSliderImages = catchAsync(async (req, res, next) => {
 
 exports.updateSlider = catchAsync(async (req, res, next) => {
   // Handling PATCH, expects only props that should be updated
-  console.log("---WORKING!!----");
-  console.log(req.body);
+
   const doc = await Slider.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-
-  console.log(doc);
 
   if (!doc) return next(new AppError("No document found with that ID", 404));
 

@@ -8,7 +8,7 @@ block content
         .row
           .col-md-5.mb-5.mb-md-0   
             div
-              img.img-fluid(alt=`${product.title}` src=`/img/products/${product.images[0]}` data-zoom-image=`/img/products/${image}`)
+              img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[0]}` data-zoom-image=`${url}/${image}`)
           .col-md-7
             .summary.entry-summary.position-relative
               h1.mb-0.font-weight-bold.text-7= product.title
@@ -123,7 +123,7 @@ block content
                             | QUICK VIEW
                           a(href=`/products/${prod.slug}`)
                             .product-thumb-info-image
-                              img.img-fluid(alt='' src=`/img/products/${prod.images[0]}`)
+                              img.img-fluid(alt='' src=`${url}/${prod.images[0]}`)
                         .d-flex.justify-content-between
                           div
                             a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/${category.slug}`)= category.title

@@ -13,6 +13,7 @@ const APIFeatures = require("../utils/apiFeatures");
 exports.getLoginTemplate = async (req, res, next) => {
   // await Order.deleteMany();
   // console.log("DELETED");
+  res.locals.url = "https://sapphire-scent-bucket.s3.us-west-2.amazonaws.com";
   try {
     const token = req.cookies.jwt;
     const decodedToken = await promisify(jwt.verify)(

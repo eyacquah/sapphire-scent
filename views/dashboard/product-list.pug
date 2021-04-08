@@ -32,7 +32,7 @@ block content
                                                 .image-frame-badges-wrapper
                                                     span.badge.badge-ecommerce.badge-danger=`${product.amountOff}% OFF`
                                                 a(href=`/dashboard/products/update/${product.slug}`)
-                                                    img.img-fluid(src=`/img/products/${product.images[0]}` alt=`${product.title}`)
+                                                    img.img-fluid(src=`${url}/${product.images[0]}` alt=`${product.title}`)
                                         //- small
                                         //-     a.ecommerce-sidebar-link.text-color-grey.text-color-hover-primary.text-decoration-none(href='index.html') CATEGORY
                                         h4.text-4.line-height-2.mt-0.mb-2

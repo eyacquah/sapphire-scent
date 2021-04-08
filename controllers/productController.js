@@ -1,11 +1,14 @@
 const multer = require("multer");
 const sharp = require("sharp");
+const AWS = require("aws-sdk");
 
 const factory = require("./handlerFactory");
 const Product = require("../models/productModel");
 
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
+
+// s3ImageURL = "https://sapphire-scent-bucket.s3.us-west-2.amazonaws.com/product-437.21080645297894-1617881124840-1.jpeg"
 
 // FACTORY CRUD
 
@@ -15,6 +18,9 @@ exports.getProduct = factory.getOne(Product);
 exports.deleteProduct = factory.deleteOne(Product);
 
 /////////////////////////////////////////////////////////////////// IMAGE UPLOADS & PROCESSING
+AWS.config.region = "us-west-2";
+
+const s3 = new AWS.S3();
 
 const multerStorage = multer.memoryStorage();
 
@@ -44,11 +50,25 @@ exports.resizeProductImages = catchAsync(async (req, res, next) => {
         i + 1
       }.jpeg`;
 
-      await sharp(file.buffer)
+      const resizedImage = await sharp(file.buffer)
         .resize(500, 500)
         .toFormat("jpeg")
         .jpeg({ quality: 90 })
-        .toFile(`public/img/products/${filename}`);
+        .toBuffer();
+      // .toFile(`public/img/products/${filename}`);
+
+      // console.log(resizedImage);
+      // console.log(resizedImage.options.input.buffer);
+
+      const s3Params = {
+        Bucket: process.env.S3_BUCKET,
+        Key: filename,
+        Body: resizedImage,
+      };
+
+      s3.upload(s3Params, (err, data) => {
+        if (err) res.status(500).send(err);
+      });
 
       req.body.images.push(filename);
     })

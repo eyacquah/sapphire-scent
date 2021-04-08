@@ -8,6 +8,8 @@ const cartCheckoutSubtotal = document.querySelector(".cartSubtotal");
 const orderTotalEl = document.querySelector(".orderTotal");
 const deliveryFee = document.querySelector(".deliveryFee");
 
+const s3ImageURL = "https://sapphire-scent-bucket.s3.us-west-2.amazonaws.com";
+
 // export let cartItems = [];
 
 export const cart = {
@@ -46,7 +48,7 @@ export const renderCartItems = (arr) => {
   <li class="item">
 						<a href="/products/${product.slug}" title="${
       product.title
-    }" class="product-image"><img src="/img/products/${
+    }" class="product-image"><img src="${s3ImageURL}/${
       product.images[0]
     }" alt="${product.title}"></a>
 						<div class="product-details">

@@ -8,6 +8,7 @@ const APIFeatures = require("../utils/apiFeatures");
 
 exports.getAllCategories = catchAsync(async (req, res, next) => {
   res.locals.categories = await Category.find();
+  res.locals.url = "https://sapphire-scent-bucket.s3.us-west-2.amazonaws.com";
   next();
 });
 
