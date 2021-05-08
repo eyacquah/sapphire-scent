@@ -39,6 +39,12 @@ html
         // Theme Custom CSS
         link(rel='stylesheet' href='/web/css/custom.css')
         // Head Libs
+        style(type='text/css').
+            .bottom-left {
+            position: absolute;
+            bottom: 8px;
+            left: 26px;
+            }
         script(src='/web/vendor/modernizr/modernizr.min.js')
     body
         include _header
@@ -49,7 +55,7 @@ html
                         each slide in slider.images
                             li(data-transition='fade')
                                 img.rev-slidebg(src=`${url}/${slide}` alt='' data-bgposition='center center' data-bgfit='cover' data-bgrepeat='no-repeat')
-                        
+
             #home-intro.home-intro.bg-primary
                 .container
                     .row.align-items-center
@@ -63,52 +69,30 @@ html
                             .get-started.text-left.text-lg-right
                                 a.btn.btn-dark.btn-lg.text-3.font-weight-semibold.px-4.py-3(href='#') Get Started Now
             .main.shop.pt-4(role='main')
-                .container
-                    .row.pb-3
-                        .col-lg-8
-                            h2.font-weight-normal.text-7
-                                | Our 
-                                strong.font-weight-extra-bold Promos
-                    .masonry-loader.masonry-loader-showing
-                        .row.products.product-thumb-info-list(data-plugin-masonry='' data-plugin-options="{'layoutMode': 'fitRows'}")
-                            each product in promoProducts
-                                -if(product.isVisible)
-                                    .col-12.col-sm-6.col-lg-3
-                                        .product.mb-0
-                                            .product-thumb-info.border-0.mb-3
-                                                .product-thumb-info-badges-wrapper
-                                                    - if(Date.parse(product.createdAt) + 2.592e9 > Date.now())
-                                                        span.badge.badge-ecommerce.badge-primary NEW
-                                                    span.badge.badge-ecommerce.badge-danger= `${product.amountOff}% OFF`
-                                                .addtocart-btn-wrapper.addToCart(data-id=product._id)
-                                                    a.text-decoration-none.addtocart-btn(href='#' data-tooltip='' data-original-title='Add to Cart')
-                                                        i.icons.icon-bag
-                                                a(href=`/products/${product.slug}`)
-                                                    //- "https://sapphire-scent-bucket.s3.us-west-2.amazonaws.com/product-437.21080645297894-1617881124840-1.jpeg"
-                                                    .product-thumb-info-image.product-thumb-info-image-effect
-                                                        img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[0]}`)
-                                                        img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[1]}`)
-                                            .d-flex.justify-content-between
-                                                div
-                                                    a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href=`/categories/${product.category.slug}`)= product.category.title
-                                                    h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
-                                                        a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
-                                            //- div(title='Rated 5 out of 5')
-                                            //-     input.d-none(type='text' value='5' title='' data-plugin-star-rating='' data-plugin-options="{'displayOnly': true, 'color': 'default', 'size':'xs'}")
-                                            p.price.text-5.mb-3
-                                                - if(product.priceDiscount)
-                                                    span.sale.text-color-dark.font-weight-medium= `GHS ${product.priceDiscount}`
-                                                    span.amount= `GHS ${product.price}`
-                                                - if(!product.priceDiscount)
-                                                    span.sale.text-color-dark.font-weight-medium= `GHS ${product.price}`
-
-            // promos end
             .container
                 .row.align-items-center
-                    .col-lg-6(style='background: url();')
+                    .col-lg-6(style='background: url()')
+                        a(href='#')
                         img(src='/web/img/slides/hm-bg-ton6.jpg' width='100%')
+                        .bottom-left
+                            a(href='#')
+                            .get-started.text-left.text-lg-right
+                                a(href='#')
+                                a.btn.btn-dark.btn-lg.text-3.font-weight-semibold.px-4.py-3(href='/categories/purfumes') Purfumes
                     .col-lg-6
+                        a(href='#')
                         img(src='/web/img/slides/img-7.jpg' width='100%')
+                        .bottom-left
+                            a(href='#')
+                            .get-started.text-left.text-lg-right
+                                a(href='#')
+                                a.btn.btn-dark.btn-lg.text-3.font-weight-semibold.px-4.py-3(href='/categories/watches') Sapphire Time
+            //- .container
+            //-     .row.align-items-center
+            //-         .col-lg-6(style='background: url();')
+            //-             img(src='/web/img/slides/hm-bg-ton6.jpg' width='100%')
+            //-         .col-lg-6
+            //-             img(src='/web/img/slides/img-7.jpg' width='100%')
             // new products
             .main.shop.pt-4(role='main')
                 .container
@@ -163,18 +147,29 @@ html
                 img(src='/web/img/slides/time-9.jpg' width='100%')
             // end of rotating text
 
-            
+
             footer#footer
                 .container
                     .footer-ribbon
                         span Get in Touch
                     .row.py-5.my-4
+                        // NEW ITEM
                         .col-md-6.col-lg-4.mb-4.mb-lg-0
-                            h5.text-3.mb-3 ABOUT
-                            p.pr-1
-                                | Sapphire Group is a leading wholesale and retail business in Nigeria, incorporated in August 2015 with special interests in rare fragrances. In
-                                | less than 2-3 years of operation, we became the first indigenous perfume
-                                | company to specialize in Oud, Frankincense, Myrrh across the globe.
+                            h5.text-5.text-transform-none.font-weight-semibold.text-color-light.mb-4
+                                | Newsletter
+                            #newsletterSuccess.alert.alert-success.d-none
+                                strong Success!
+                                |  You've been added to our email list.
+                            #newsletterError.alert.alert-danger.d-none
+                            form#mc-embedded-subscribe-form.validate.mb-3.mb-md-0(action='https://sapphirescentghana.us1.list-manage.com/subscribe/post?u=b775fd2f76d836da0d0b55bfb&id=370ab0ec94' method='post' name='mc-embedded-subscribe-form' target='_blank' novalidate='')
+                                #mc_embed_signup_scroll.input-group.input-group-rounded
+                                    input#mce-EMAIL.form-control.form-control-sm.bg-light(placeholder='Email Address' name='newsletterEmail' type='text')
+                                    div(style='position: absolute; left: -5000px' aria-hidden='true')
+                                        input(type='text' name='b_b775fd2f76d836da0d0b55bfb_370ab0ec94' tabindex='-1' value='')
+                                    span.input-group-append
+                                        button#mc-embedded-subscribe.btn.btn-light.text-color-dark(type='submit')
+                                            strong GO!
+                        // END
                         .col-md-6.col-lg-4.mb-4.mb-md-0
                             .contact-details
                                 h5.text-3.mb-3 CONTACT US
@@ -206,7 +201,7 @@ html
                     .container.py-2
                         .row.py-4
                             .col-lg-7.d-flex.align-items-center.justify-content-center.justify-content-lg-start.mb-4.mb-lg-0
-                                p © Copyright 2021. All Rights Reserved.
+                                p © Copyright 2021. All Rights Reserved..
         // Vendor
         script(src='/web/vendor/jquery/jquery.min.js')
         script(src='/web/vendor/jquery.appear/jquery.appear.min.js')
@@ -238,13 +233,13 @@ html
         script(src='/web/js/theme.init.js')
         script(src="/js/web/bundle.js")
 
-        //
-            Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
-            <script>
+        
+        // Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+        
+        script.
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             ga('create', 'UA-12345678-1', 'auto');
             ga('send', 'pageview');
-            </script>

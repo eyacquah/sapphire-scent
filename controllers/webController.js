@@ -22,7 +22,7 @@ exports.getIndex = catchAsync(async (req, res, next) => {
   allProducts.forEach((product) => {
     if (
       Date.parse(product.createdAt) + 2.592e9 > Date.now() &&
-      newProducts.length <= 7
+      newProducts.length < 4
     )
       newProducts.push(product);
 

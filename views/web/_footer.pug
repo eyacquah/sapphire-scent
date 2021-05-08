@@ -3,12 +3,23 @@ footer#footer
         .footer-ribbon
             span Get in Touch
         .row.py-5.my-4
+            // NEW ITEM
             .col-md-6.col-lg-4.mb-4.mb-lg-0
-                h5.text-3.mb-3 ABOUT
-                p.pr-1
-                    | Sapphire Group is a leading wholesale and retail business in Nigeria, incorporated in August 2015 with special interests in rare fragrances. In
-                    | less than 2-3 years of operation, we became the first indigenous perfume
-                    | company to specialize in Oud, Frankincense, Myrrh across the globe.
+                h5.text-5.text-transform-none.font-weight-semibold.text-color-light.mb-4
+                    | Newsletter
+                #newsletterSuccess.alert.alert-success.d-none
+                    strong Success!
+                    |  You've been added to our email list.
+                #newsletterError.alert.alert-danger.d-none
+                form#mc-embedded-subscribe-form.validate.mb-3.mb-md-0(action='https://sapphirescentghana.us1.list-manage.com/subscribe/post?u=b775fd2f76d836da0d0b55bfb&id=370ab0ec94' method='post' name='mc-embedded-subscribe-form' target='_blank' novalidate='')
+                    #mc_embed_signup_scroll.input-group.input-group-rounded
+                        input#mce-EMAIL.form-control.form-control-sm.bg-light(placeholder='Email Address' name='newsletterEmail' type='text')
+                        div(style='position: absolute; left: -5000px' aria-hidden='true')
+                            input(type='text' name='b_b775fd2f76d836da0d0b55bfb_370ab0ec94' tabindex='-1' value='')
+                        span.input-group-append
+                            button#mc-embedded-subscribe.btn.btn-light.text-color-dark(type='submit')
+                                strong GO!
+            // END
             .col-md-6.col-lg-4.mb-4.mb-md-0
                 .contact-details
                     h5.text-3.mb-3 CONTACT US

@@ -24,7 +24,7 @@ block content
                                                 img.img-fluid(alt=`${product.title}` src=`${url}/${product.images[0]}`)
                                     .d-flex.justify-content-between
                                         div
-                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#') electronics
+                                            a.d-block.text-uppercase.text-decoration-none.text-color-default.text-color-hover-primary.line-height-1.text-0.mb-1(href='#')= product.category.title
                                             h3.text-3-4.font-weight-normal.font-alternative.text-transform-none.line-height-3.mb-0
                                                 a.text-color-dark.text-color-hover-primary(href=`/products/${product.slug}`)= product.title
                                     p.price.text-5.mb-3
@@ -38,12 +38,15 @@ block content
                     .row.mt-4.pagParent(data-numOfPages=numOfPages data-currPage=currPage)
                         .col
                             ul.pagination.float-right
-                                li.page-item.prevPage
                                 -if(currPage !== 1)
                                     a.page-link(href=`?page=${currPage - 1}&limit=${pageLimit}`)
                                         i.fas.fa-angle-left
+                                    li.page-item.prevPage
+                                        a.page-link(href=`?page=${currPage - 1}&limit=${pageLimit}`) #{currPage - 1}
                                 li.page-item.active
                                     a.page-link(href='#') #{currPage}
                                 - if(currPage < numOfPages)
+                                    li.page-item
+                                        a.page-link(href=`?page=${currPage + 1}&limit=${pageLimit}`) #{currPage + 1}
                                     a.page-link.nextPage(href=`?page=${currPage + 1}&limit=${pageLimit}`)
                                         i.fas.fa-angle-right
