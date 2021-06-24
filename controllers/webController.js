@@ -14,25 +14,25 @@ exports.getAllCategories = catchAsync(async (req, res, next) => {
 
 exports.getIndex = catchAsync(async (req, res, next) => {
   const newProducts = [];
-  const promoProducts = [];
+  // const promoProducts = [];
 
   const allProducts = await Product.find();
   allProducts.reverse();
 
   allProducts.forEach((product) => {
     if (
-      Date.parse(product.createdAt) + 2.592e9 > Date.now() &&
+      Date.parse(product.createdAt) + 3.154e+10 > Date.now() &&
       newProducts.length < 4
     )
       newProducts.push(product);
 
-    if (product.priceDiscount && promoProducts.length <= 7) {
-      const percentPriceDiscount =
-        (product.priceDiscount / product.price) * 100;
+    // if (product.priceDiscount && promoProducts.length <= 7) {
+    //   const percentPriceDiscount =
+    //     (product.priceDiscount / product.price) * 100;
 
-      product.amountOff = 100 - Math.floor(percentPriceDiscount);
-      promoProducts.push(product);
-    }
+    //   product.amountOff = 100 - Math.floor(percentPriceDiscount);
+    //   promoProducts.push(product);
+    // }
   });
 
   const slider = await Slider.findById("603e1a9e45a8e80a8ca21fa9");
@@ -42,7 +42,7 @@ exports.getIndex = catchAsync(async (req, res, next) => {
     title: "Home",
     slider,
     newProducts,
-    promoProducts,
+    // promoProducts,
   });
 });
 
