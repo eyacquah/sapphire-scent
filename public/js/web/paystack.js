@@ -9,7 +9,7 @@ import { showAlert } from "./helper";
 import axios from "axios";
 
 let ref;
-const paystackPublic = "pk_test_23c82fb58c925434b6231b6534a9a49954808378";
+const paystackPublic = "pk_live_91af58fbe688d584a9b54b5b2128b957efe8bd1e";
 
 // const
 
